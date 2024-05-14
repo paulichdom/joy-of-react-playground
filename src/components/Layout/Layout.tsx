@@ -34,6 +34,8 @@ const Container = styled.div`
 
 const Header = styled.header``;
 
-const Main = styled.main``;
+const Main = styled.main`
+  padding: 32px 0px;
+`;
 
 const Footer = styled.footer``;

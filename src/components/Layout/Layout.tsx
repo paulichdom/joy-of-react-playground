@@ -32,10 +32,24 @@ const Container = styled.div`
     'footer footer footer';
 `;
 
-const Header = styled.header``;
-
-const Main = styled.main`
-  padding: 32px 0px;
+const Header = styled.header`
+  grid-area: header;
+  display: flex;
+  justify-content: center;
+  padding: 16px 24px;
+  background-color: rgb(117, 135, 172);
 `;
 
-const Footer = styled.footer``;
+const Main = styled.main`
+  grid-area: main;
+  height: 100%;
+  padding: 32px 0px 32px;
+`;
+
+const Footer = styled.footer`
+  grid-area: footer;
+  display: flex;
+  justify-content: center;
+  padding: 16px 24px;
+  background-color: rgb(117, 135, 172);
+`;

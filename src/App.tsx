@@ -1,11 +1,11 @@
-import './App.css';
+
 import Layout from './components/Layout';
-import Form from './components/Form';
+import FormControls from './components/FormControls';
 
 function App() {
   return (
    <Layout>
-    <Form />
+    <FormControls />
    </Layout>
   );
 }

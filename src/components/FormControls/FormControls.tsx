@@ -3,6 +3,9 @@ import { FormEvent, useState } from 'react';
 import styled from 'styled-components';
 import { COUNTRIES } from './data';
 import CountryPicker from './CountryPicker';
+import TwoFactorAuth from './TwoFactorAuth';
+
+const CORRECT_CODE = '123456';
 
 export type CountryCode = keyof typeof COUNTRIES;
 export type CountryName = (typeof COUNTRIES)[CountryCode];
@@ -14,9 +17,14 @@ export type Country = {
 
 const FormControls: React.FC = () => {
   const [countryCode, setCountryCode] = useState<string>('HR');
+  const [authCode, setAuthCode] = useState<string>('');
 
   const handleSubmit = (event: FormEvent) => {
     event?.preventDefault();
+
+    const isCorrect = authCode === CORRECT_CODE;
+
+    window.alert(isCorrect ? 'Correct!' : 'Incorrect');
   };
 
   const countries: Country[] = Object.entries(COUNTRIES).map((country) => {
@@ -34,7 +42,7 @@ const FormControls: React.FC = () => {
         countryCode={countryCode}
         setCountryCode={setCountryCode}
       />
-      <button type="submit">SUBMIT</button>
+      <TwoFactorAuth authCode={authCode} setAuthCode={setAuthCode} />
     </Form>
   );
 };

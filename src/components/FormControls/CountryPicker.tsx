@@ -44,6 +44,7 @@ const CountryPicker: React.FC<CountryPickerProps> = ({
           ? COUNTRIES[countryCode as CountryCode]
           : 'No selection'}
       </ValueDisplay>
+      <SubmitButton type="submit">SUBMIT</SubmitButton>
     </>
   );
 };
@@ -67,4 +68,11 @@ const ValueDisplay = styled.p`
   border-radius: 4px;
   padding: 16px 24px;
   background-color: rgba(238, 238, 124, 0.686);
+`;
+
+const SubmitButton = styled.button`
+  height: 2.5rem;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
 `;

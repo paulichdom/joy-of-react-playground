@@ -40,4 +40,4 @@ export const COLORS_BY_THEME = {
       '#FFF50F',
     ],
   },
-};
+} as const;

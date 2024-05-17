@@ -1,11 +1,11 @@
 
 import Layout from './components/Layout';
-import FormControls from './components/FormControls';
+import GenerativeArtControls from './components/FormControls/GenerativeArtControls';
 
 function App() {
   return (
    <Layout>
-    <FormControls />
+    <GenerativeArtControls />
    </Layout>
   );
 }

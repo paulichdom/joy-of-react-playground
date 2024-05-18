@@ -4,36 +4,48 @@ import styled from 'styled-components';
 const NEW_COLOR = '#FF0000';
 
 const GradientGenerator: React.FC = () => {
-  const [colors, setColors] = React.useState(['#FFD500', '#FF0040']);
+  const [colors, setColors] = React.useState([
+    '#FFD500',
+    '#FF0040',
+    '#FF0040',
+    '#FF0040',
+    '#FF0040',
+  ]);
+  const [numOfVisibleColors, setNumOfVisibleColors] = React.useState(2);
 
-  const colorStops = colors.join(', ');
+  const visibleColors = colors.slice(0, numOfVisibleColors);
+
+  const colorStops = visibleColors.join(', ');
   const backgroundImage = `linear-gradient(${colorStops})`;
+
+  function handleAddColor() {
+    if (numOfVisibleColors >= 5) {
+      window.alert('There is a maximum of 5 colors');
+      return;
+    }
+
+    setNumOfVisibleColors(numOfVisibleColors + 1);
+  }
+
+  function handleRemoveColor() {
+    if (numOfVisibleColors <= 2) {
+      window.alert('There is a minimum of 2 colors');
+      return;
+    }
+
+    setNumOfVisibleColors(numOfVisibleColors - 1);
+  }
+
   return (
     <Wrapper>
       <h1>Gradient Generator</h1>
       <Actions>
-        <StyledButton
-          onClick={() =>
-            setColors((prevValue) =>
-              prevValue.filter(
-                (_color, index) => index !== prevValue.length - 1
-              )
-            )
-          }
-          disabled={colors.length < 3}
-        >
-          Remove color
-        </StyledButton>
-        <StyledButton
-          onClick={() => setColors((prevValue) => [...prevValue, NEW_COLOR])}
-          disabled={colors.length > 4}
-        >
-          Add color
-        </StyledButton>
+        <StyledButton onClick={handleRemoveColor}>Remove color</StyledButton>
+        <StyledButton onClick={handleAddColor}>Add color</StyledButton>
       </Actions>
       <GradientPreview style={{ backgroundImage }} />
       <Colors>
-        {colors.map((color, index) => {
+        {visibleColors.map((color, index) => {
           const colorId = `color-${index}`;
           return (
             <ColorWrapper key={colorId}>

@@ -16,7 +16,7 @@ export const Circle: React.FC<ShapeProps> = ({ index, colors }) => {
     <circle
       cx={100}
       cy={50}
-      r={index * 7.5 * 5}
+      r={index * 3.5 * 2}
       stroke={colors.lineColors[index % colors.lineColors.length]}
     />
   );
@@ -46,7 +46,7 @@ export const Polygon: React.FC<ShapeProps> = ({ index, colors }) => {
   );
 };
 
-export type Shape = 'circles' | 'polygon';
+export type Shape = 'circles' | 'polygons';
 
 type GenerativeArtProps = {
   numOfLines: number;

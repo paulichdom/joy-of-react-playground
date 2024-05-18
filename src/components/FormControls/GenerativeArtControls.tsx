@@ -21,7 +21,16 @@ const GenerativeArtControls = () => {
               <ControlHeading htmlFor="num-of-lines">
                 Number of lines
               </ControlHeading>
-              <RangeInput id="num-of-lines" type="range" min="1" max="15" />
+              <RangeInput
+                id="num-of-lines"
+                type="range"
+                min="1"
+                max="15"
+                value={numOfLines}
+                onChange={(event) => {
+                  setNumOfLines(parseInt(event.target.value));
+                }}
+              />
             </Column>
           </Row>
           <Row>
@@ -29,23 +38,41 @@ const GenerativeArtControls = () => {
               <ControlHeading htmlFor="color-theme">
                 Color Theme:
               </ControlHeading>
-              <SelectInput id="color-theme">
+              <SelectInput
+                id="color-theme"
+                value={colorTheme}
+                onChange={(event) => setColorTheme(event.target.value as Theme)}
+              >
                 <option value="basic">Basic</option>
                 <option value="monochrome">Monoschrome</option>
-                <option value="basic">Froot Loops</option>
-                <option value="basic">Spooky Night</option>
+                <option value="froot-loops">Froot Loops</option>
+                <option value="spooky">Spooky Night</option>
               </SelectInput>
             </Column>
             <Column>
               <ControlHeading>Shape:</ControlHeading>
               <RadioWrapper>
                 <RadioOption>
-                  <input type="radio" />
-                  <label>Circles</label>
+                  <input
+                    id="shape-circle"
+                    type="radio"
+                    name="shape"
+                    value="circles"
+                    checked={shape === 'circles'}
+                    onChange={(event) => setShape(event.target.value as Shape)}
+                  />
+                  <label htmlFor="shape-cirlce">Circles</label>
                 </RadioOption>
                 <RadioOption>
-                  <input type="radio" />
-                  <label>Poliygons</label>
+                  <input
+                    id="shape-polygon"
+                    type="radio"
+                    name="shape"
+                    value="polygons"
+                    checked={shape === 'polygons'}
+                    onChange={(event) => setShape(event.target.value as Shape)}
+                  />
+                  <label htmlFor="shape-poliygon">Poliygons</label>
                 </RadioOption>
               </RadioWrapper>
             </Column>

@@ -42,8 +42,9 @@ const Header = styled.header`
 
 const Main = styled.main`
   grid-area: main;
-  height: 100%;
   padding: 32px 0px 32px;
+  // TODO: Find a better soultion for adjusting the height
+  height: 100vh;
 `;
 
 const Footer = styled.footer`

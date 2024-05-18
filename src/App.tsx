@@ -1,11 +1,11 @@
 
 import Layout from './components/Layout';
-import GenerativeArtControls from './components/FormControls/GenerativeArtControls';
+import GradientGenerator from './components/GradientGenerator';
 
 function App() {
   return (
    <Layout>
-    <GenerativeArtControls />
+    <GradientGenerator />
    </Layout>
   );
 }

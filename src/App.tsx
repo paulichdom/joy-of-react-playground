@@ -1,11 +1,11 @@
 
+import CanadianToonie from './components/CanadianToonie';
 import Layout from './components/Layout';
-import StickerPad from './components/StickerPad';
 
 function App() {
   return (
    <Layout>
-    <StickerPad />
+    <CanadianToonie />
    </Layout>
   );
 }

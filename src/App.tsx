@@ -1,11 +1,11 @@
 
 import Layout from './components/Layout';
-import GradientGenerator from './components/GradientGenerator';
+import StickerPad from './components/StickerPad';
 
 function App() {
   return (
    <Layout>
-    <GradientGenerator />
+    <StickerPad />
    </Layout>
   );
 }

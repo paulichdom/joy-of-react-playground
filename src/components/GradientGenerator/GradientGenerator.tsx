@@ -1,8 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const NEW_COLOR = '#FF0000';
-
 const GradientGenerator: React.FC = () => {
   const [colors, setColors] = React.useState([
     '#FFD500',

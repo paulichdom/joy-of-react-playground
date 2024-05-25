@@ -36,4 +36,9 @@ const CoinButton = styled.button`
   &:hover {
     transform: scale(1.05);
   }
+
+  &:active {
+    transform: scale(1);
+    transition-duration: 50ms;
+  }
 `;

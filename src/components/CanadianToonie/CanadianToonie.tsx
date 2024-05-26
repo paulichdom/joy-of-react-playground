@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 import BigCoin from './BigCoin';
+import React from 'react';
 
 function CanadianToonie() {
+  const [numOfCoins, setNumOfCoins] = React.useState(0);
+
   return (
     <Wrapper>
       <main>
-        <BigCoin />
+        <BigCoin numOfCoins={numOfCoins} setNumOfCoins={setNumOfCoins} />
       </main>
       <footer>
-        Your coin balance: <strong>0</strong>
+        Your coin balance: <strong>{numOfCoins}</strong>
       </footer>
     </Wrapper>
   );

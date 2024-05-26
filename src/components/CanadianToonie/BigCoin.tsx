@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function BigCoin() {
-  const [numOfCoins, setNumOfCoins] = React.useState(0);
+type BigCoinProps = {
+  numOfCoins: number;
+  setNumOfCoins: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const BigCoin: React.FC<BigCoinProps> = ({numOfCoins, setNumOfCoins}) => {
+  
 
   return (
     <div>

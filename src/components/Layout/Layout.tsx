@@ -9,7 +9,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Container>
       <Header>
-        <h1>Playground</h1>
+        <h1>Sandbox</h1>
       </Header>
       <Main>{children}</Main>
       <Footer>
@@ -37,7 +37,8 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   padding: 16px 24px;
-  background-color: rgb(117, 135, 172);
+  color: white;
+  background-color: hsl(250deg 15% 25%);
 `;
 
 const Main = styled.main`
@@ -45,6 +46,7 @@ const Main = styled.main`
   padding: 32px 0px 32px;
   // TODO: Find a better soultion for adjusting the height
   height: 100vh;
+  flex: 1;
 `;
 
 const Footer = styled.footer`
@@ -52,5 +54,6 @@ const Footer = styled.footer`
   display: flex;
   justify-content: center;
   padding: 16px 24px;
-  background-color: rgb(117, 135, 172);
+  color: white;
+  background-color: hsl(250deg 15% 25%);
 `;

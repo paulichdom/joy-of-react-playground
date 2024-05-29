@@ -1,10 +1,10 @@
-import AnimatedSearch from './components/AnimatedSearch';
 import Layout from './components/Layout';
+import PlaybackWithCredits from './components/VideoPlayer/PlaybackWithCredits';
 
 function App() {
   return (
    <Layout>
-    <AnimatedSearch />
+    <PlaybackWithCredits />
    </Layout>
   );
 }

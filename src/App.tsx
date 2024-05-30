@@ -1,10 +1,12 @@
 import Layout from './components/Layout';
-import PlaybackWithCredits from './components/VideoPlayer/PlaybackWithCredits';
+import MediaPlayer from './components/MediaPlayer';
+
+const DEMO_SONG_SRC = 'https://storage.googleapis.com/joshwcomeau/bvrnout-take-it-easy-short.mp3';
 
 function App() {
   return (
    <Layout>
-    <PlaybackWithCredits />
+    <MediaPlayer src={DEMO_SONG_SRC} />
    </Layout>
   );
 }

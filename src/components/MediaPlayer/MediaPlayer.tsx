@@ -32,8 +32,13 @@ const MediaPlayer: React.FC<{ src: string }> = ({ src }) => {
           {!isPlaying ? <Play /> : <Pause />}
           <VisuallyHidden>Toggle playing</VisuallyHidden>
         </Button>
-
-        <audio ref={audioRef} src={src} />
+        <audio
+          ref={audioRef}
+          src={src}
+          onEnded={() => {
+            setIsPlaying(false);
+          }}
+        />
       </Player>
     </Wrapper>
   );

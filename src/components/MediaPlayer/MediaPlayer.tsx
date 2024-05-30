@@ -1,9 +1,22 @@
 import React from 'react';
-import { Play /* Pause */ } from 'react-feather';
+import { Play, Pause } from 'react-feather';
 import VisuallyHidden from '../VisuallyHidden';
 import styled from 'styled-components';
 
 const MediaPlayer: React.FC<{ src: string }> = ({ src }) => {
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const audioRef = React.useRef<HTMLAudioElement | null>(null);
+
+  const handlePlayControl = () => {
+    const nextIsPlaying = !isPlaying;
+    setIsPlaying(nextIsPlaying);
+
+    if (nextIsPlaying) {
+      audioRef.current?.play();
+    } else {
+      audioRef.current?.pause();
+    }
+  };
   return (
     <Wrapper>
       <Player>
@@ -15,12 +28,12 @@ const MediaPlayer: React.FC<{ src: string }> = ({ src }) => {
           <h2>Take It Easy</h2>
           <p>Bvrnout ft. Mia Vaile</p>
         </Summary>
-        <Button>
-          <Play />
+        <Button onClick={handlePlayControl}>
+          {!isPlaying ? <Play /> : <Pause />}
           <VisuallyHidden>Toggle playing</VisuallyHidden>
         </Button>
 
-        <audio src={src} />
+        <audio ref={audioRef} src={src} />
       </Player>
     </Wrapper>
   );

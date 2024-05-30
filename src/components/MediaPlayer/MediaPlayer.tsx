@@ -3,6 +3,8 @@ import { Play, Pause } from 'react-feather';
 import VisuallyHidden from '../VisuallyHidden';
 import styled from 'styled-components';
 
+// const DEMO_SONG_SRC = 'https://storage.googleapis.com/joshwcomeau/bvrnout-take-it-easy-short.mp3';
+
 const MediaPlayer: React.FC<{ src: string }> = ({ src }) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);

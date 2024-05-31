@@ -1,10 +1,10 @@
-import DarkModeToggle from './components/DarkModeToggle/DarkModeToggle';
 import Layout from './components/Layout';
+import MouseCoords from './components/MouseCoords';
 
 function App() {
   return (
     <Layout>
-      <DarkModeToggle />
+      <MouseCoords />
     </Layout>
   );
 }

@@ -47,14 +47,14 @@ const Toggle: React.FC<ToggleProps> = ({
           handleToggle(!checked);
         }}
         width={width + 'px'}
-        padding={padding}
+        $padding={padding}
         radius={size * 0.25 + 'px'}
         checked={checked}
       >
         <Ball
           size={size}
           transform={ballTransform}
-          background={backdropColor}
+          $background={backdropColor}
           checked={checked}
         />
       </ToggleButton>
@@ -72,7 +72,7 @@ const Wrapper = styled.div`
 
 type ToggleStyle = {
   width: string;
-  padding: number;
+  $padding: number;
   radius: string;
   checked: boolean;
 };
@@ -84,7 +84,7 @@ const ToggleButton = styled.button<ToggleStyle>`
   position: relative;
 
   width: ${({ width }) => `${width}`};
-  padding: ${({ padding }) => `${padding}px`};
+  padding: ${({ $padding }) => `${$padding}px`};
 
   &::before {
     content: '';
@@ -119,7 +119,7 @@ const ToggleButton = styled.button<ToggleStyle>`
 type BallStyle = {
   size: number;
   transform: string;
-  background: string;
+  $background: string;
   checked: boolean;
 };
 

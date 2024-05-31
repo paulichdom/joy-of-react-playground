@@ -1,24 +1,21 @@
-/*
-Local Storage cheatsheet:
-
-// To save an item:
-window.localStorage.setItem('is-dark-mode', true);
-
-// To retrieve the value:
-JSON.parse(window.localStorage.getItem('is-dark-mode'));
-*/
-
 import React from 'react';
 import Toggle from './Toggle';
 import styled from 'styled-components';
 
-function App() {
-  const [isDarkMode, setIsDarkMode] = React.useState(false);
+const IS_DARK_MODE = 'is-dark-mode';
 
-  console.log({isDarkMode})
+function App() {
+  const [isDarkMode, setIsDarkMode] = React.useState(() => {
+    const storedModeValue = window.localStorage.getItem(IS_DARK_MODE);
+    return storedModeValue?.toLowerCase() === 'true';
+  });
+
+  React.useEffect(() => {
+    window.localStorage.setItem(IS_DARK_MODE, isDarkMode ? 'true' : 'false');
+  }, [isDarkMode]);
 
   return (
-    <Wrapper isDarkMode={isDarkMode}>
+    <Wrapper $isDarkMode={isDarkMode}>
       <Toggle
         label="Dark Mode"
         checked={isDarkMode}
@@ -32,13 +29,13 @@ function App() {
 export default App;
 
 type WrapperProps = {
-  isDarkMode: boolean;
+  $isDarkMode: boolean;
 };
 
 const Wrapper = styled.div<WrapperProps>`
   display: flex;
   justify-content: center;
-  background-color: ${({isDarkMode}) => (isDarkMode ? 'black' : 'white')};
-  color: ${({isDarkMode}) => (isDarkMode ? 'white' : 'black')};
+  background-color: ${({ $isDarkMode }) => ($isDarkMode ? 'black' : 'white')};
+  color: ${({ $isDarkMode }) => ($isDarkMode ? 'white' : 'black')};
   height: 100%;
 `;

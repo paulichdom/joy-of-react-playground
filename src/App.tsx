@@ -1,10 +1,10 @@
 import Layout from './components/Layout';
-import MouseCoords from './components/MouseCoords';
+import Article from './components/Toasty/Article';
 
 function App() {
   return (
     <Layout>
-      <MouseCoords />
+      <Article />
     </Layout>
   );
 }

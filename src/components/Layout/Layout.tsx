@@ -23,13 +23,16 @@ export default Layout;
 
 const Container = styled.div`
   display: grid;
+  flex: 1;
   grid-template-columns: 1fr min(60ch, calc(100% - 64px)) 1fr;
   grid-column-gap: 32px;
-  grid-template-rows: auto;
+  grid-row-gap: 32px;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     'header header header'
     '. main .'
     'footer footer footer';
+  min-height: 100%;
 `;
 
 const Header = styled.header`
@@ -43,10 +46,6 @@ const Header = styled.header`
 
 const Main = styled.main`
   grid-area: main;
-  padding: 32px 0px 32px;
-  // TODO: Find a better soultion for adjusting the height
-  height: 100vh;
-  flex: 1;
 `;
 
 const Footer = styled.footer`

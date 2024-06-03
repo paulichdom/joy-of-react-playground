@@ -12,14 +12,17 @@ function MouseCoords() {
       });
     }
 
-    // TODO: Cleanup missing
-
     /**
      * Subscription. We only want to subscribe once, when the component first mounts.
      * Not part of React, it's part of the DOM. When we call this method, we set up a long-running
      * process that will call our callback function whenever the mousemove event is detected.
      */
     window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      // Unsubscribe
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
 
   return (

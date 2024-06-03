@@ -1,10 +1,10 @@
 import Layout from './components/Layout';
-import Article from './components/Toasty/Article';
+import MouseCoordsContainer from './components/MouseCoords/MouseCoordsContainer';
 
 function App() {
   return (
     <Layout>
-      <Article />
+      <MouseCoordsContainer />
     </Layout>
   );
 }

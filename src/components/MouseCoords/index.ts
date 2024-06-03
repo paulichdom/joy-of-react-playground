@@ -1,2 +1,2 @@
 export * from './MouseCoords';
-export { default } from './MouseCoords';
+export * from './MouseCoordsContainer'

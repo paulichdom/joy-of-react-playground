@@ -6,14 +6,12 @@ function Clock() {
   const [time, setTime] = React.useState(new Date());
 
   React.useEffect(() => {
-    setTime(new Date())
-  }, [time])
+    const intervalId = setInterval(() => setTime(new Date()), 1000);
 
-  return (
-    <ClockWrapper>
-      {format(time, 'hh:mm:ss a')}
-    </ClockWrapper>
-  );
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return <ClockWrapper>{format(time, 'hh:mm:ss a')}</ClockWrapper>;
 }
 
 export default Clock;

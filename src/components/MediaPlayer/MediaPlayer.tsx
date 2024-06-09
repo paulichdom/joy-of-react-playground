@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Play, Pause } from 'react-feather';
 import VisuallyHidden from '../VisuallyHidden';
 import styled from 'styled-components';
@@ -8,26 +8,30 @@ import styled from 'styled-components';
 const MediaPlayer: React.FC<{ src: string }> = ({ src }) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
-  
-  const handlePlayControl = useCallback(() => {
-    const nextIsPlaying = !isPlaying;
-    setIsPlaying(nextIsPlaying);
 
-    if (nextIsPlaying) {
+  React.useEffect(() => {
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (event.code === 'Space') {
+        setIsPlaying((currentValue) => {
+          return !currentValue;
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeydown);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (isPlaying) {
       audioRef.current?.play();
     } else {
       audioRef.current?.pause();
     }
   }, [isPlaying]);
-
-  React.useEffect(() => {
-    const audioElement = audioRef.current;
-    audioElement?.addEventListener('keydown', handlePlayControl)
-    
-    return () => {
-      audioElement?.removeEventListener('keydown', handlePlayControl);
-    }
-  }, [handlePlayControl])
 
   return (
     <Wrapper>
@@ -40,8 +44,8 @@ const MediaPlayer: React.FC<{ src: string }> = ({ src }) => {
           <h2>Take It Easy</h2>
           <p>Bvrnout ft. Mia Vaile</p>
         </Summary>
-        <Button onClick={handlePlayControl}>
-          {!isPlaying ? <Play /> : <Pause />}
+        <Button onClick={() => setIsPlaying(!isPlaying)}>
+          {isPlaying ? <Pause /> : <Play />}
           <VisuallyHidden>Toggle playing</VisuallyHidden>
         </Button>
         <audio

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Play, Pause } from 'react-feather';
 import VisuallyHidden from '../VisuallyHidden';
 import styled from 'styled-components';
@@ -8,8 +8,8 @@ import styled from 'styled-components';
 const MediaPlayer: React.FC<{ src: string }> = ({ src }) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
-
-  const handlePlayControl = () => {
+  
+  const handlePlayControl = useCallback(() => {
     const nextIsPlaying = !isPlaying;
     setIsPlaying(nextIsPlaying);
 
@@ -18,7 +18,17 @@ const MediaPlayer: React.FC<{ src: string }> = ({ src }) => {
     } else {
       audioRef.current?.pause();
     }
-  };
+  }, [isPlaying]);
+
+  React.useEffect(() => {
+    const audioElement = audioRef.current;
+    audioElement?.addEventListener('keydown', handlePlayControl)
+    
+    return () => {
+      audioElement?.removeEventListener('keydown', handlePlayControl);
+    }
+  }, [handlePlayControl])
+
   return (
     <Wrapper>
       <Player>

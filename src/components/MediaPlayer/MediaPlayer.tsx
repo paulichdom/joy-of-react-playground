@@ -44,7 +44,14 @@ const MediaPlayer: React.FC<{ src: string }> = ({ src }) => {
           <h2>Take It Easy</h2>
           <p>Bvrnout ft. Mia Vaile</p>
         </Summary>
-        <Button onClick={() => setIsPlaying(!isPlaying)}>
+        <Button
+          onKeyDown={(event) => {
+            if (event.code === 'Space') {
+              return event.stopPropagation();
+            }
+          }}
+          onClick={() => setIsPlaying(!isPlaying)}
+        >
           {isPlaying ? <Pause /> : <Play />}
           <VisuallyHidden>Toggle playing</VisuallyHidden>
         </Button>

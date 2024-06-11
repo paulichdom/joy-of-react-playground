@@ -1,10 +1,10 @@
-import IntervalCounter from './components/IntervalCounter';
+import DigitalClock from './components/DigitalClock';
 import Layout from './components/Layout';
 
 function App() {
   return (
     <Layout>
-      <IntervalCounter />
+      <DigitalClock />
     </Layout>
   );
 }

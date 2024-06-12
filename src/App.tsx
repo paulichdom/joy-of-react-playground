@@ -1,10 +1,10 @@
-import DigitalClock from './components/DigitalClock';
 import Layout from './components/Layout';
+import MouseCoords from './components/MouseCoords/MouseCoords';
 
 function App() {
   return (
     <Layout>
-      <DigitalClock />
+      <MouseCoords />
     </Layout>
   );
 }

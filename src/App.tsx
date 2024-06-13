@@ -1,10 +1,10 @@
 import Layout from './components/Layout';
-import MouseCoords from './components/MouseCoords/MouseCoords';
+import RedSquare from './components/RedSquare';
 
 function App() {
   return (
     <Layout>
-      <MouseCoords />
+      <RedSquare />
     </Layout>
   );
 }

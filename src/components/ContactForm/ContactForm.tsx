@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ENDPOINT = 'https://jor-test-api.vercel.app/api/contact';
+const ENDPOINT = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
 
 function ContactForm() {
   const [email, setEmail] = React.useState('');
@@ -21,6 +21,7 @@ function ContactForm() {
         message,
       }),
     });
+
     const json = await response.json();
     console.log(json);
   }

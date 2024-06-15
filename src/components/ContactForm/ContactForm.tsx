@@ -3,16 +3,23 @@ import styled from 'styled-components';
 
 const ENDPOINT = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
 
+type FormEvent = React.FormEvent<HTMLFormElement>;
+type NetworkStatus = 'idle' | 'loading' | 'success' | 'error';
+
 function ContactForm() {
   const [email, setEmail] = React.useState('');
   const [message, setMessage] = React.useState('');
+
+  const [status, setStatus] = React.useState<NetworkStatus>('idle');
 
   const id = React.useId();
   const emailId = `${id}-email`;
   const messageId = `${id}-message`;
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
+
+    setStatus('loading');
 
     const response = await fetch(ENDPOINT, {
       method: 'POST',
@@ -24,6 +31,13 @@ function ContactForm() {
 
     const json = await response.json();
     console.log(json);
+
+    if (json.ok) {
+      setStatus('success');
+      setMessage('');
+    } else {
+      setStatus('error');
+    }
   }
 
   return (
@@ -32,6 +46,7 @@ function ContactForm() {
         <Label htmlFor={emailId}>Email</Label>
         <Input
           required={true}
+          disabled={status === 'loading'}
           id={emailId}
           type="email"
           value={email}
@@ -44,6 +59,7 @@ function ContactForm() {
         <Label htmlFor={messageId}>Message</Label>
         <Textarea
           required={true}
+          disabled={status === 'loading'}
           id={messageId}
           value={message}
           onChange={(event) => {
@@ -53,7 +69,17 @@ function ContactForm() {
       </Row>
       <Row>
         <ButtonSpacer />
-        <Button>Submit</Button>
+        <Button disabled={status === 'loading'}>
+          {status === 'loading' ? 'Submitting...' : 'Submit'}
+        </Button>
+      </Row>
+      <Row>
+        {status === 'success' && (
+          <StatusMessage>Thank you! Your message has been sent.</StatusMessage>
+        )}
+        {status === 'error' && (
+          <StatusMessage>Something went wrong.</StatusMessage>
+        )}
       </Row>
     </Form>
   );
@@ -102,4 +128,9 @@ const Button = styled.button`
   display: block;
   padding: 8px 32px;
   margin: 0px auto;
+`;
+
+const StatusMessage = styled.p`
+  flex: 1;
+  text-align: center;
 `;

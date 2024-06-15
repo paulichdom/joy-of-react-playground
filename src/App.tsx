@@ -1,10 +1,10 @@
-import DigitalClock from './components/DigitalClock';
+import ContactForm from './components/ContactForm';
 import Layout from './components/Layout';
 
 function App() {
   return (
     <Layout>
-      <DigitalClock />
+      <ContactForm />
     </Layout>
   );
 }

@@ -1,13 +1,13 @@
-import React from 'react';
 import Clock from './Clock';
 import styled from 'styled-components';
+import { useToggle } from '../../hooks/use-toggle';
 
 function DigitalClock() {
-  const [showClock, setShowClock] = React.useState(true);
+  const [showClock, toggleClock] = useToggle(true);
 
   return (
     <ClockContainer>
-      <ClockToggle onClick={() => setShowClock(!showClock)}>
+      <ClockToggle onClick={toggleClock as () => void}>
         {showClock ? 'Clock ON' : 'Clock OFF'}
       </ClockToggle>
       {showClock && <Clock />}

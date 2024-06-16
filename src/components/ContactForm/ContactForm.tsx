@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import emailjs from 'emailjs-com';
 
-const ENDPOINT = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
+// const ENDPOINT = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_USER_ID = import.meta.env.VITE_EMAILJS_USER_ID;
 
 type FormEvent = React.FormEvent<HTMLFormElement>;
 type NetworkStatus = 'idle' | 'loading' | 'success' | 'error';
@@ -21,22 +25,31 @@ function ContactForm() {
 
     setStatus('loading');
 
-    const response = await fetch(ENDPOINT, {
-      method: 'POST',
-      body: JSON.stringify({
-        email,
-        message,
-      }),
-    });
+    const templateParams = {
+      from_name: email,
+      to_name: 'Dom',
+      message: message,
+    };
 
-    const json = await response.json();
-    console.log(json);
+    try {
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_USER_ID
+      );
 
-    if (json.ok) {
-      setStatus('success');
-      setMessage('');
-    } else {
-      setStatus('error');
+      console.log({ response });
+
+      if (response.text === 'OK') {
+        setStatus('success');
+        setMessage('');
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      throw new Error('Failed to send email');
     }
   }
 

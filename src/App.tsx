@@ -1,10 +1,11 @@
+import ContactForm from './components/ContactForm';
 import Layout from './components/Layout';
-import Temperature from './components/Temperature';
+//import Temperature from './components/Temperature';
 
 function App() {
   return (
     <Layout>
-      <Temperature />
+      <ContactForm />
     </Layout>
   );
 }

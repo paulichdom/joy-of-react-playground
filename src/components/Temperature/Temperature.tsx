@@ -1,19 +1,31 @@
 import styled from 'styled-components';
 import useSWR from 'swr';
 
-const ENDPOINT = 'https://jor-test-api.vercel.app/api/get-temperature';
+const ENDPOINT = import.meta.env.VITE_GET_TEMPERATURE_ENDPOINT;
 
 async function fetcher(endpoint: string) {
   const response = await fetch(endpoint);
   const json = await response.json();
 
+  if (!json.ok) {
+    throw json;
+  }
+
   return json;
 }
 
 function Temperature() {
-  const { data, error } = useSWR(ENDPOINT, fetcher);
+  const { data, isLoading, error } = useSWR(ENDPOINT, fetcher);
 
-  console.log(data, error);
+  console.log(data, isLoading, error);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Something's gone wrong: {error.error}</p>;
+  }
 
   return (
     <Paragraph>

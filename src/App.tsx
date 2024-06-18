@@ -1,10 +1,10 @@
 import Layout from './components/Layout';
-import Temperature from './components/Temperature';
+import BookSearch from './components/BookSearch';
 
 function App() {
   return (
     <Layout>
-      <Temperature />
+      <BookSearch />
     </Layout>
   );
 }

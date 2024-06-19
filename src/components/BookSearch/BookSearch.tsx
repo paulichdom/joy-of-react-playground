@@ -22,7 +22,7 @@ import styled from 'styled-components';
     • `hello` — 0 results
 */
 
-// const ENDPOINT = import.meta.env.VITE_BOOK_SEARCH_ENDPOINT;
+const ENDPOINT = import.meta.env.VITE_BOOK_SEARCH_ENDPOINT;
 
 export type Book = {
   isbn: string;
@@ -41,10 +41,23 @@ function App() {
   const [searchTerm, setSearchTerm] = React.useState('');
   // const [searchResults, setSearchResults] = React.useState(null);
 
+  const handleSubmitForm = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (!searchTerm) return;
+
+    const searchParams = new URLSearchParams();
+    searchParams.append('searchTerm', searchTerm);
+
+    const response = await fetch(`${ENDPOINT}?${searchParams}`);
+    const result = await response.json();
+    console.log({ result });
+  };
+
   return (
     <>
       <Header>
-        <Form>
+        <Form onSubmit={handleSubmitForm}>
           <TextInput
             required={true}
             label="Search"

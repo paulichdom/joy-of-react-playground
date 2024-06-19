@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchResult from './SearchResult';
 import TextInput from './TextInput';
+import styled from 'styled-components';
 
 /*
   API INSTRUCTIONS
@@ -42,8 +43,8 @@ function App() {
 
   return (
     <>
-      <header>
-        <form>
+      <Header>
+        <Form>
           <TextInput
             required={true}
             label="Search"
@@ -53,19 +54,19 @@ function App() {
               setSearchTerm(event.target.value);
             }}
           />
-          <button>Go!</button>
-        </form>
-      </header>
+          <Button>Go!</Button>
+        </Form>
+      </Header>
 
       <main>
-        <div className="search-results">
-          <h2>Search Results:</h2>
+        <SearchResults>
+          <SeactionTitle>Search Results:</SeactionTitle>
           {/*
             Here's an example of the element
             we want to render:
           */}
           <SearchResult result={EXAMPLE} />
-        </div>
+        </SearchResults>
       </main>
     </>
   );
@@ -82,3 +83,45 @@ const EXAMPLE = {
 };
 
 export default App;
+
+const Header = styled.header`
+  padding: 16px;
+  border-bottom: 2px solid #333;
+  background: hsl(345deg 100% 90%);
+`;
+
+const Form = styled.form`
+  display: flex;
+  gap: 0px;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const Button = styled.button`
+  height: 2.75rem;
+  border: 2px solid #333;
+  border-radius: 0px 4px 4px 0px;
+  padding: 0px 24px;
+  background: white;
+`;
+
+const SearchResults = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  gap: 32px;
+  margin: 32px auto;
+  max-width: 35rem;
+`;
+
+const SeactionTitle = styled.h2`
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+  overflow-wrap: break-word;
+`;

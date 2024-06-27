@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchResult from './SearchResult';
 import TextInput from './TextInput';
 import styled from 'styled-components';
@@ -24,6 +24,8 @@ import styled from 'styled-components';
 
 const ENDPOINT = import.meta.env.VITE_BOOK_SEARCH_ENDPOINT;
 
+type NetworkStatus = 'idle' | 'loading' | 'success' | 'error';
+
 export type Book = {
   isbn: string;
   name: string;
@@ -38,21 +40,27 @@ export type SearchResult = {
 };
 
 function App() {
-  const [searchTerm, setSearchTerm] = React.useState('');
-  // const [searchResults, setSearchResults] = React.useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState<Book[]>([]);
+  const [status, setStatus] = useState<NetworkStatus>('idle');
 
   const handleSubmitForm = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (!searchTerm) return;
+    setStatus('loading');
 
     const searchParams = new URLSearchParams();
     searchParams.append('searchTerm', searchTerm);
 
     const response = await fetch(`${ENDPOINT}?${searchParams}`);
-    const result = await response.json();
-    console.log({ result });
+    const json = await response.json();
+
+    setSearchResults(json.results);
+    setStatus('success');
   };
+
+  const isLoading = status === 'loading';
 
   return (
     <>
@@ -70,30 +78,23 @@ function App() {
           <Button>Go!</Button>
         </Form>
       </Header>
-
       <main>
         <SearchResults>
           <SeactionTitle>Search Results:</SeactionTitle>
-          {/*
-            Here's an example of the element
-            we want to render:
-          */}
-          <SearchResult result={EXAMPLE} />
+          {isLoading && <p>Searching ...</p>}
+          {!isLoading &&
+            searchResults &&
+            searchResults.map((result) => (
+              <SearchResult key={result.isbn} result={result} />
+            ))}
+          {!isLoading && status === 'success' && searchResults.length < 1 && (
+            <p>No results found</p>
+          )}
         </SearchResults>
       </main>
     </>
   );
 }
-
-const EXAMPLE = {
-  isbn: '9781473621442',
-  name: 'A Closed and Common Orbit',
-  author: 'Becky Chambers',
-  coverSrc:
-    'https://sandpack-bundler.vercel.app/img/book-covers/common-orbit.jpg',
-  abstract:
-    "Lovelace was once merely a ship's artificial intelligence. When she wakes up in an new body, following a total system shut-down and reboot, she has no memory of what came before. As Lovelace learns to negotiate the universe and discover who she is, she makes friends with Pepper, an excitable engineer, who's determined to help her learn and grow.",
-};
 
 export default App;
 

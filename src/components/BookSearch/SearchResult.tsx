@@ -6,11 +6,14 @@ type SearchResultProps = {
   result: Book;
 };
 
+const IMAGE_SRC = import.meta.env.VITE_IMAGE_SRC
+
 const SearchResult: React.FC<SearchResultProps> = ({ result }) => {
+  const coverImageSrc = `${IMAGE_SRC}${result.coverSrc}`
   return (
     <Wrapper>
       <ImageContainer>
-        <Image alt="" src={result.coverSrc} />
+        <Image alt="" src={coverImageSrc} />
       </ImageContainer>
       <Description>
         <Name>{result.name}</Name>

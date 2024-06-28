@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import SearchResult from './SearchResult';
 import TextInput from './TextInput';
 import styled from 'styled-components';
+import { SearchResultList } from './SearchResultList';
 
 /*
   API INSTRUCTIONS
@@ -56,14 +57,16 @@ function App() {
     const response = await fetch(`${ENDPOINT}?${searchParams}`);
     const json = await response.json();
 
-    setSearchResults(json.results);
-    setStatus('success');
+    if (json.ok) {
+      setSearchResults(json.results);
+      setStatus('success');
+    } else {
+      setStatus('error');
+    }
   };
 
-  const isLoading = status === 'loading';
-
   return (
-    <>
+    <Fragment>
       <Header>
         <Form onSubmit={handleSubmitForm}>
           <TextInput
@@ -78,21 +81,15 @@ function App() {
           <Button>Go!</Button>
         </Form>
       </Header>
-      <main>
-        <SearchResults>
-          <SeactionTitle>Search Results:</SeactionTitle>
-          {isLoading && <p>Searching ...</p>}
-          {!isLoading &&
-            searchResults &&
-            searchResults.map((result) => (
-              <SearchResult key={result.isbn} result={result} />
-            ))}
-          {!isLoading && status === 'success' && searchResults.length < 1 && (
-            <p>No results found</p>
-          )}
-        </SearchResults>
-      </main>
-    </>
+      <Main>
+        {status === 'idle' && <h2>Welcome to Book Search!</h2>}
+        {status === 'loading' && <h3>Searching ...</h3>}
+        {status === 'success' && (
+          <SearchResultList searchResults={searchResults} />
+        )}
+        {status === 'error' && <h3>An error occured</h3>}
+      </Main>
+    </Fragment>
   );
 }
 
@@ -119,23 +116,9 @@ const Button = styled.button`
   background: white;
 `;
 
-const SearchResults = styled.div`
+const Main = styled.main`
   display: flex;
   flex-direction: column;
-  padding: 32px;
-  gap: 32px;
-  margin: 32px auto;
-  max-width: 35rem;
-`;
-
-const SeactionTitle = styled.h2`
-  display: block;
-  font-size: 1.5em;
-  margin-block-start: 0.83em;
-  margin-block-end: 0.83em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-weight: bold;
-  unicode-bidi: isolate;
-  overflow-wrap: break-word;
+  align-items: center;
+  padding-top: 32px;
 `;

@@ -1,10 +1,10 @@
 import Layout from './components/Layout';
-import BookSearch from './components/BookSearch';
+import UserDisplay from './components/UserDisplay';
 
 function App() {
   return (
     <Layout>
-      <BookSearch />
+      <UserDisplay />
     </Layout>
   );
 }

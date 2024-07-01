@@ -25,6 +25,7 @@ const Card = styled.article`
   border: 2px dashed hsl(260deg 100% 80%);
   outline: 2px solid white;
   text-align: center;
+  height: fit-content;
 `;
 
 const Name = styled.p`

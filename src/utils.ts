@@ -38,3 +38,14 @@ export const convertPolarToCartesian = ([angle, radius]: [number, number]) => {
 
   return [x, y];
 };
+
+export async function fetcher(endpoint: string) {
+  const response = await fetch(endpoint);
+  const json = await response.json();
+
+  if (!json.ok) {
+    throw json;
+  }
+
+  return json;
+}

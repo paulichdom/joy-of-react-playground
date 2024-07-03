@@ -5,6 +5,7 @@ type LayoutProps = {
   children: ReactNode;
 };
 
+// Footer is commented out temp to gain more realestate and ease of use
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Container>
@@ -12,9 +13,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <h1>Sandbox</h1>
       </Header>
       <Main>{children}</Main>
-      <Footer>
+      {/*  <Footer>
         <p>2024</p>
-      </Footer>
+      </Footer> */}
     </Container>
   );
 };
@@ -30,8 +31,8 @@ const Container = styled.div`
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     'header header header'
-    '. main .'
-    'footer footer footer';
+    '. main .';
+  /* 'footer footer footer'; */
   min-height: 100%;
 `;
 
@@ -48,11 +49,11 @@ const Main = styled.main`
   grid-area: main;
 `;
 
-const Footer = styled.footer`
+/* const Footer = styled.footer`
   grid-area: footer;
   display: flex;
   justify-content: center;
   padding: 16px 24px;
   color: white;
   background-color: hsl(250deg 15% 25%);
-`;
+`; */

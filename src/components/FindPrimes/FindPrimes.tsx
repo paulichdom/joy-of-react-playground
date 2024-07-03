@@ -1,22 +1,31 @@
 import * as React from 'react';
 import { isPrime } from '../../helpers';
 import styled from 'styled-components';
+import { useTime } from '../DigitalClock/use-time.hook';
+import { format } from 'date-fns/format';
 
 export const FindPrimes = () => {
   // We hold the user's selected number in state.
   const [selectedNum, setSelectedNum] = React.useState(100);
+  const time = useTime();
 
   // We calculate all of the prime numbers between 0 and the
   // user's chosen number, `selectedNum`:
-  const allPrimes = [];
-  for (let counter = 2; counter < selectedNum; counter++) {
-    if (isPrime(counter)) {
-      allPrimes.push(counter);
+  const allPrimes = React.useMemo(() => {
+    const result = [];
+
+    for (let counter = 2; counter < selectedNum; counter++) {
+      if (isPrime(counter)) {
+        result.push(counter);
+      }
     }
-  }
+
+    return result;
+  }, [selectedNum]);
 
   return (
     <Wrapper>
+      <p className="clock">{format(time, 'hh:mm:ss a')}</p>
       <Form>
         <label htmlFor="num">Your number:</label>
         <input

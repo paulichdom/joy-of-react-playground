@@ -1,10 +1,10 @@
-import FindPrimes from './components/FindPrimes';
+import NameAndBoxes from './components/Boxes/NameAndBoxes';
 import Layout from './components/Layout';
 
 function App() {
   return (
     <Layout>
-      <FindPrimes />
+      <NameAndBoxes />
     </Layout>
   );
 }

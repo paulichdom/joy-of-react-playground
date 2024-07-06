@@ -23,7 +23,9 @@ const Grid: React.FC<Grid> = ({ numRows, numCols }) => {
   );
 };
 
-export default Grid;
+const MemoizedGrid = React.memo(Grid)
+
+export default MemoizedGrid;
 
 const Wrapper = styled.div`
   display: flex;

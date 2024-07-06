@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Grid from './Grid';
+import MemoizedGrid from './Grid';
 import useMousePosition from '../../hooks/use-mouse-position.hook';
 import styled from 'styled-components';
 
@@ -42,7 +42,7 @@ const PureGrid: React.FC = () => {
           />
         </div>
       </Form>
-      <Grid numRows={numRows} numCols={numCols} />
+      <MemoizedGrid numRows={numRows} numCols={numCols} />
     </Wrapper>
   );
 };

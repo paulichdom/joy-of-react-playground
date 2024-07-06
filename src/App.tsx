@@ -1,10 +1,10 @@
 import Layout from './components/Layout';
-import MegaCounter from './components/MegaCounter';
+import PureGrid from './components/PureGrid';
 
 function App() {
   return (
     <Layout>
-      <MegaCounter />
+      <PureGrid />
     </Layout>
   );
 }

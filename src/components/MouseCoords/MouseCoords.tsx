@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useMousePosition from './use-mouse-position.hook';
+import useMousePosition from '../../hooks/use-mouse-position.hook';
 
 function MouseCoords() {
   const mousePosition = useMousePosition();

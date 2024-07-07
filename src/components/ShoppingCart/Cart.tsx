@@ -8,8 +8,14 @@ const ShoppingCart: React.FC<{ items: Item[] }> = ({ items }) => {
   const [postalCode, setPostalCode] = React.useState('');
   const postalCodeId = React.useId();
 
-  const inStockItems = items.filter((item) => item.inStock);
-  const outOfStockItems = items.filter((item) => !item.inStock);
+  const inStockItems = React.useMemo(
+    () => items.filter((item) => item.inStock),
+    [items]
+  );
+  const outOfStockItems = React.useMemo(
+    () => items.filter((item) => !item.inStock),
+    [items]
+  );
 
   return (
     <Wrapper>

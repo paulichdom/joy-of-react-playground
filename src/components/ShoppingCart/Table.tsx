@@ -2,11 +2,11 @@ import React from 'react';
 import { Item } from './items';
 import styled from 'styled-components';
 
-const CartTable: React.FC<{ items: Item[] }> = ({ items }) => {
+const Table: React.FC<{ items: Item[] }> = ({ items }) => {
   console.info('CartTable render');
 
   return (
-    <Table>
+    <TableBase>
       <thead>
         <tr>
           <Header></Header>
@@ -25,13 +25,15 @@ const CartTable: React.FC<{ items: Item[] }> = ({ items }) => {
           </tr>
         ))}
       </Body>
-    </Table>
+    </TableBase>
   );
 };
 
+const CartTable = React.memo(Table);
+
 export default CartTable;
 
-const Table = styled.table`
+const TableBase = styled.table`
   width: 100%;
   border-collapse: collapse;
 

@@ -1,16 +1,17 @@
 import Clock from './Clock';
 import styled from 'styled-components';
 import { useToggle } from '../../hooks/use-toggle';
+import { ClockToggle } from './ClockToggle';
+import { useTime } from './use-time.hook';
 
 function DigitalClock() {
   const [showClock, toggleClock] = useToggle(true);
+  const time = useTime();
 
   return (
     <ClockContainer>
-      <ClockToggle onClick={toggleClock as () => void}>
-        {showClock ? 'Clock ON' : 'Clock OFF'}
-      </ClockToggle>
-      {showClock && <Clock />}
+      <ClockToggle handleToggle={toggleClock as () => void} />
+      {showClock && <Clock time={time} />}
     </ClockContainer>
   );
 }
@@ -23,16 +24,4 @@ const ClockContainer = styled.div`
   align-items: center;
   height: 100%;
   gap: 16px;
-`;
-
-const ClockToggle = styled.button`
-  padding: 8px 16px;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #e5e5e5;
-  }
 `;

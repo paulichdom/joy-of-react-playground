@@ -1,10 +1,10 @@
+import DigitalClock from './components/DigitalClock';
 import Layout from './components/Layout';
-import ShoppingCart from './components/ShoppingCart';
 
 function App() {
   return (
     <Layout>
-      <ShoppingCart />
+      <DigitalClock />
     </Layout>
   );
 }

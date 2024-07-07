@@ -1,10 +1,7 @@
 import { format } from 'date-fns/format';
 import styled from 'styled-components';
-import { useTime } from './use-time.hook';
 
-function Clock() {
-  const time = useTime();
-
+const Clock: React.FC<{time: Date}> = ({time}) => {
   return <ClockWrapper>{format(time, 'hh:mm:ss a')}</ClockWrapper>;
 }
 

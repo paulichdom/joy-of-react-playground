@@ -1,10 +1,10 @@
 import Layout from './components/Layout';
-import PureGrid from './components/PureGrid';
+import ShoppingCart from './components/ShoppingCart';
 
 function App() {
   return (
     <Layout>
-      <PureGrid />
+      <ShoppingCart />
     </Layout>
   );
 }

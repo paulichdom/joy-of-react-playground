@@ -1,9 +1,17 @@
 import React from 'react';
 
-export const useToggle = (initialvalue = false) => {
-  const [value, setValue] = React.useState(initialvalue);
+export const useToggle = (initialValue = false) => {
+  if (typeof initialValue !== 'boolean') {
+    console.warn('Invalid type for useToggle');
+  }
 
-  const toggle = () => setValue(!value);
+  const [value, setValue] = React.useState(
+    initialValue
+  );
 
-  return [value, toggle];
-};
+  function toggleValue() {
+    setValue((currentValue) => !currentValue);
+  }
+
+  return [value, toggleValue];
+}

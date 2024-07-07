@@ -5,13 +5,11 @@ export const useToggle = (initialValue = false) => {
     console.warn('Invalid type for useToggle');
   }
 
-  const [value, setValue] = React.useState(
-    initialValue
-  );
+  const [value, setValue] = React.useState(initialValue);
 
-  function toggleValue() {
+  const toggleValue = React.useCallback(function toggleValue() {
     setValue((currentValue) => !currentValue);
-  }
+  }, []);
 
   return [value, toggleValue];
-}
+};

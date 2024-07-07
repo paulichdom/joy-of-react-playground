@@ -1,7 +1,7 @@
 import Clock from './Clock';
 import styled from 'styled-components';
 import { useToggle } from '../../hooks/use-toggle';
-import { ClockToggle } from './ClockToggle';
+import ClockToggle from './ClockToggle';
 import { useTime } from './use-time.hook';
 
 function DigitalClock() {

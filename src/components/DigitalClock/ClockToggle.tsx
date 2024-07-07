@@ -1,11 +1,15 @@
+import React from 'react';
 import styled from 'styled-components';
 
-export const ClockToggle: React.FC<{ handleToggle: () => void }> = ({
+const ToggleClock: React.FC<{ handleToggle: () => void }> = ({
   handleToggle,
 }) => {
   console.info('ClockToggle render');
   return <Toggle onClick={handleToggle}>Toggle clock</Toggle>;
 };
+
+const ClockToggle = React.memo(ToggleClock)
+export default ClockToggle
 
 const Toggle = styled.button`
   padding: 8px 16px;

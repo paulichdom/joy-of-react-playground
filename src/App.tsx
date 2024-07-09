@@ -1,10 +1,10 @@
-import DigitalClock from './components/DigitalClock';
 import Layout from './components/Layout';
+import Product from './components/ProductDetails';
 
 function App() {
   return (
     <Layout>
-      <DigitalClock />
+      <Product />
     </Layout>
   );
 }

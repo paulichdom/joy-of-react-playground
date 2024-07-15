@@ -17,7 +17,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
   const profileUrl = `/users/${user.handle}`;
   const imageAlt = `${user.avatarDescription} (user profile photo)`;
   return (
-    <Card>
+    <Card elevation='low'>
       <Avatar alt={imageAlt} src={user.avatarSrc} />
       <ProfileLink href={profileUrl}>{user.name}</ProfileLink>
     </Card>

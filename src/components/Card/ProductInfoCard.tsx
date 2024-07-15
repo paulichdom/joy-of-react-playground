@@ -17,7 +17,7 @@ type ProductInfoCardProps = {
 
 const ProductInfoCard: React.FC<ProductInfoCardProps> = ({ product }) => {
   return (
-    <Card>
+    <Card elevation='high'>
       <Wrapper>
         <Image alt={product.imageAlt} src={product.imageSrc} />
         <Title>{product.title}</Title>

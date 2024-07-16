@@ -1,12 +1,12 @@
-import DisplayCards from './components/Card/DisplayCards';
 import Layout from './components/Layout';
+import VolumeSlider from './components/Slider/VolumeSlider';
 
 
 
 function App() {
   return (
     <Layout>
-      <DisplayCards />
+      <VolumeSlider />
     </Layout>
   );
 }

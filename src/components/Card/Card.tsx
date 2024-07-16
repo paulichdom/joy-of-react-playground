@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 type CardProps = {
   children: React.ReactNode;
-  elevation: 'low' | 'medium' | 'high';
+  elevation?: 'low' | 'medium' | 'high';
 };
 
-const Card: React.FC<CardProps> = ({ children, elevation }) => {
+const Card: React.FC<CardProps> = ({ children, elevation = 'low' }) => {
   return <Wrapper elevation={elevation}>{children}</Wrapper>;
 };
 
@@ -16,10 +16,7 @@ const Wrapper = styled.div<{ elevation?: string }>`
   background: white;
   padding: 16px;
   border-radius: 8px;
-  /*
-    This CSS variable is defined in the
-    “styles.css” file.
-  */
+
   box-shadow: ${({ elevation }) => {
     switch (elevation) {
       case 'low':

@@ -5,26 +5,13 @@ type SliderProps = ComponentProps<'input'> & {
   label: string;
 };
 
-const Slider: React.FC<SliderProps> = ({
-  label,
-  min,
-  max,
-  value,
-  onChange,
-}) => {
+const Slider: React.FC<SliderProps> = ({ label, ...delegated }) => {
   const id = React.useId();
 
   return (
     <Wrapper>
       <Label htmlFor={id}>{label}</Label>
-      <StyledSlider
-        type="range"
-        id={id}
-        min={min}
-        max={max}
-        value={value}
-        onChange={onChange}
-      />
+      <StyledSlider type="range" id={id} {...delegated} />
     </Wrapper>
   );
 };

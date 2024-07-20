@@ -139,4 +139,5 @@ const Ball = styled.span<BallStyle>`
   width: ${({ size }) => `${size}px`};
   height: ${({ size }) => `${size}px`};
   transform: ${({ transform }) => `${transform}`};
+  transition: transform 400ms cubic-bezier(.1,.78,.38,1.06);
 `;

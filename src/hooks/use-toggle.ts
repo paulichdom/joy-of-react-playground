@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const useToggle = (initialValue = false) => {
+export const useToggle = (initialValue = false): [boolean, () => void] => {
   if (typeof initialValue !== 'boolean') {
     console.warn('Invalid type for useToggle');
   }

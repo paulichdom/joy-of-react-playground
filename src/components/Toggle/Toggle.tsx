@@ -15,6 +15,7 @@ const Toggle: React.FC<ToggleProps> = ({
   handleToggle,
   backdropColor = 'white',
   size = 16,
+  ...delegated
 }) => {
   const id = React.useId();
 
@@ -27,6 +28,7 @@ const Toggle: React.FC<ToggleProps> = ({
     <Wrapper>
       <Label htmlFor={id}>{label}</Label>
       <ToggleButton
+        {...delegated}
         id={id}
         type="button"
         aria-pressed={checked}
@@ -57,9 +59,7 @@ const Wrapper = styled.div`
   gap: 16px;
 `;
 
-const Label = styled.label`
-  
-`;
+const Label = styled.label``;
 
 type ToggleStyle = {
   width: string;
@@ -119,12 +119,15 @@ const Ball = styled.span<BallStyle>`
   position: relative;
   z-index: 2;
   border-radius: 50%;
-  background: ${({ $background }) => `${$background === 'green' ? 'hsl(140deg 100% 70%)' : 'white'}`};
-  border: 2px solid ${({ $background }) => `${$background === 'green' ? 'hsl(140deg 100% 70%)' : 'white'}`};
+  background: ${({ $background }) =>
+    `${$background === 'green' ? 'hsl(140deg 100% 70%)' : 'white'}`};
+  border: 2px solid
+    ${({ $background }) =>
+      `${$background === 'green' ? 'hsl(140deg 100% 70%)' : 'white'}`};
   outline: 2px solid black;
 
   width: ${({ size }) => `${size}px`};
   height: ${({ size }) => `${size}px`};
   transform: ${({ transform }) => `${transform}`};
-  transition: transform 400ms cubic-bezier(.1,.78,.38,1.06);
+  transition: transform 400ms cubic-bezier(0.1, 0.78, 0.38, 1.06);
 `;

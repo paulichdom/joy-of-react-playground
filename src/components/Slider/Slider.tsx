@@ -1,20 +1,22 @@
-import React, { ComponentProps } from 'react';
+import React, { ComponentProps, forwardRef } from 'react';
 import styled from 'styled-components';
 
 type SliderProps = ComponentProps<'input'> & {
   label: string;
 };
 
-const Slider: React.FC<SliderProps> = ({ label, ...delegated }) => {
-  const id = React.useId();
+const Slider: React.FC<SliderProps> = forwardRef(
+  ({ label, ...delegated }, ref) => {
+    const id = React.useId();
 
-  return (
-    <Wrapper>
-      <Label htmlFor={id}>{label}</Label>
-      <StyledSlider type="range" id={id} {...delegated} />
-    </Wrapper>
-  );
-};
+    return (
+      <Wrapper>
+        <Label htmlFor={id}>{label}</Label>
+        <StyledSlider ref={ref} type="range" id={id} {...delegated} />
+      </Wrapper>
+    );
+  }
+);
 
 export default Slider;
 

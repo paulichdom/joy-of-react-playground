@@ -1,10 +1,10 @@
 import Layout from './components/Layout';
-import CustomisedToggle from './components/Toggle/CustomisedToggle';
+import VolumeSlider from './components/Slider/VolumeSlider';
 
 function App() {
   return (
     <Layout>
-      <CustomisedToggle />
+      <VolumeSlider />
     </Layout>
   );
 }

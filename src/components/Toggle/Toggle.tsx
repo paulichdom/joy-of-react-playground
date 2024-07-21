@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ComponentProps } from 'react';
 import styled from 'styled-components';
 
-type ToggleProps = {
+type ToggleProps = ComponentProps<'button'> & {
   label: string;
   checked: boolean;
   handleToggle: (checked: boolean) => void;
@@ -22,19 +22,6 @@ const Toggle: React.FC<ToggleProps> = ({
   const width = size * 2 + padding * 2;
 
   const ballTransform = checked ? `translateX(100%)` : `translateX(0%)`;
-
-  /* const wrapperStyle = {
-    width,
-    padding,
-    '--radius': size * 0.25 + 'px',
-    '--backdrop-color': backdropColor,
-  }; */
-
-  /* const ballStyle = {
-    width: size,
-    height: size,
-    transform: checked ? `translateX(100%)` : `translateX(0%)`,
-  }; */
 
   return (
     <Wrapper>
@@ -132,8 +119,8 @@ const Ball = styled.span<BallStyle>`
   position: relative;
   z-index: 2;
   border-radius: 50%;
-  background: white;
-  border: 2px solid white;
+  background: ${({ $background }) => `${$background === 'green' ? 'hsl(140deg 100% 70%)' : 'white'}`};
+  border: 2px solid ${({ $background }) => `${$background === 'green' ? 'hsl(140deg 100% 70%)' : 'white'}`};
   outline: 2px solid black;
 
   width: ${({ size }) => `${size}px`};

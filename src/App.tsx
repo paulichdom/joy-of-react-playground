@@ -1,10 +1,10 @@
-import ButtonApp from './components/FancyButton/ButtonApp';
 import Layout from './components/Layout';
+import VolumeSlider from './components/Slider/VolumeSlider';
 
 function App() {
   return (
     <Layout>
-      <ButtonApp />
+      <VolumeSlider />
     </Layout>
   );
 }

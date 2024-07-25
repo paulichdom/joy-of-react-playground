@@ -1,18 +1,27 @@
 import React, { ComponentProps, forwardRef } from 'react';
 import styled from 'styled-components';
 
+type Shape = 'circle' | 'square';
+
 type SliderProps = ComponentProps<'input'> & {
   label: string;
+  shape?: Shape;
 };
 
 const Slider: React.FC<SliderProps> = forwardRef(
-  ({ label, ...delegated }, ref) => {
+  ({ label, shape = 'circle', ...delegated }, ref) => {
     const id = React.useId();
 
     return (
       <Wrapper>
         <Label htmlFor={id}>{label}</Label>
-        <StyledSlider ref={ref} type="range" id={id} {...delegated} />
+        <StyledSlider
+          ref={ref}
+          type="range"
+          id={id}
+          shape={shape}
+          {...delegated}
+        />
       </Wrapper>
     );
   }
@@ -32,10 +41,10 @@ const Label = styled.label`
   font-weight: 500;
 `;
 
-const StyledSlider = styled.input`
+const StyledSlider = styled.input<{ shape: Shape }>`
   --handle-size: 16px;
-  --handle-radius: 1000px;
-  --track-size: 3px;
+  --handle-radius: ${({ shape }) => (shape === 'square' ? '1px' : '1000px')};
+  --track-size: ${({ shape }) => (shape === 'square' ? '22px' : '3px')};
   --bg: white;
   --track-color: hsl(0deg 0% 50% / 0.25);
   --handle-color: hsl(250deg 100% 50%);
@@ -81,12 +90,22 @@ const StyledSlider = styled.input`
     background: var(--track-color);
     border-radius: calc(var(--track-size) / 2);
     margin: calc(var(--handle-size) / 2) 0;
+
+    ${({ shape }) =>
+      shape === 'square'
+        ? `padding-left: 3px;
+           padding-right: 3px;`
+        : ''};
+
+    padding-left: 3px;
+    padding-right: 3px;
   }
 
   &::-moz-range-track {
     background: var(--track-color);
     height: var(--track-size);
-    border-radius: calc(var(--track-size) / 2);
+    ${({ shape }) =>
+      shape === 'square' ? '' : 'border-radius: calc(var(--track-size) / 2);'};
   }
 
   &:active::-webkit-slider-runnable-track,

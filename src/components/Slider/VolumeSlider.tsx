@@ -12,6 +12,7 @@ const VolumeSlider: React.FC = () => {
 
   return (
     <Slider
+      shape={'square'}
       ref={sliderRef}
       label="Volume"
       min={0}

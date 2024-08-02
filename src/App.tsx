@@ -1,14 +1,10 @@
 import Layout from './components/Layout';
-import List from './components/List/List';
+import SamplePage from './components/SectionWithHeading/SamplePage';
 
 function App() {
   return (
     <Layout>
-      <List as="ol" type="i">
-        <li>First item</li>
-        <li>Second item</li>
-        <li>Third item</li>
-      </List>
+      <SamplePage />
     </Layout>
   );
 }

@@ -1,22 +1,31 @@
-import React, { ComponentProps, ReactNode } from 'react';
-import styles from './List.module.css';
+import React, { ComponentPropsWithoutRef, ReactNode } from 'react';
+import styled from 'styled-components';
 
 type ListProps = {
-  className: string;
+  as?: 'ul' | 'ol';
   children: ReactNode;
-  delegated: ComponentProps<'ul' | 'ol'>;
-};
+} & ComponentPropsWithoutRef<'ol'> &
+  ComponentPropsWithoutRef<'ul'>;
 
-const List: React.FC<ListProps> = ({
-  className = '',
-  children,
-  ...delegated
-}) => {
+const List: React.FC<ListProps> = ({ as = 'ul', children, ...delegated }) => {
   return (
-    <ul {...delegated} className={`${styles.wrapper} ${className}`}>
+    <StyledList as={as} {...delegated}>
       {children}
-    </ul>
+    </StyledList>
   );
 };
 
 export default List;
+
+const StyledList = styled.div`
+  font-size: 1.25rem;
+  padding: 0px;
+
+  & > li {
+    margin-bottom: 0.5em;
+  }
+
+  & > li::marker {
+    color: hsl(345deg 100% 50%);
+  }
+`;

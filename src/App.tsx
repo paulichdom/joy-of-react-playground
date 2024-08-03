@@ -1,10 +1,10 @@
+import ImagePreview from './components/CaptionedImage/ImagePreview';
 import Layout from './components/Layout';
-import SamplePage from './components/SectionWithHeading/SamplePage';
 
 function App() {
   return (
     <Layout>
-      <SamplePage />
+      <ImagePreview />
     </Layout>
   );
 }

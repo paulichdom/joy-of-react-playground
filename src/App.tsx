@@ -1,10 +1,11 @@
-import ImagePreview from './components/CaptionedImage/ImagePreview';
+import { Award } from 'react-feather';
+import IconButton from './components/IconButton';
 import Layout from './components/Layout';
 
 function App() {
   return (
     <Layout>
-      <ImagePreview />
+      <IconButton icon={Award}>Take photo</IconButton>
     </Layout>
   );
 }

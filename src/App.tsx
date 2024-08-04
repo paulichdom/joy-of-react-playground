@@ -1,11 +1,10 @@
-import { Award } from 'react-feather';
-import IconButton from './components/IconButton';
 import Layout from './components/Layout';
+import ContextMvp from './components/ContextMvp';
 
 function App() {
   return (
     <Layout>
-      <IconButton icon={Award}>Take photo</IconButton>
+      <ContextMvp />
     </Layout>
   );
 }

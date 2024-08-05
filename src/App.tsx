@@ -1,10 +1,10 @@
 import Layout from './components/Layout';
-import ContextMvp from './components/ContextMvp';
+import PlaybackRate from './components/PlabackRate/PlaybackRate';
 
 function App() {
   return (
     <Layout>
-      <ContextMvp />
+      <PlaybackRate />
     </Layout>
   );
 }

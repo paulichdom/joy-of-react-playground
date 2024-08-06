@@ -1,23 +1,40 @@
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import styled from 'styled-components';
 import { DATA } from './data';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
-import styled from 'styled-components';
+
+type PlaybackRateContextState = {
+  playbackRate: string;
+  setPlaybackRate: Dispatch<SetStateAction<string>>;
+};
+
+const initalContextState: PlaybackRateContextState = {
+  playbackRate: '1',
+  setPlaybackRate: () => {},
+};
+
+export const PlaybackRateContext =
+  React.createContext<PlaybackRateContextState>(initalContextState);
 
 const PlaybackRate: React.FC = () => {
+  const [playbackRate, setPlaybackRate] = useState('1');
   return (
-    <Main>
-      <h1>Video archives</h1>
-      {DATA.map(({ id, video, createdBy, license }) => (
-        <article key={id}>
-          <VideoPlayer src={video.src} caption={video.caption} />
-          <DescriptionList>
-            <Term>Created by</Term>
-            <Description>{createdBy}</Description>
-            <Term>Licensed under</Term>
-            <Description>{license}</Description>
-          </DescriptionList>
-        </article>
-      ))}
-    </Main>
+    <PlaybackRateContext.Provider value={{ playbackRate, setPlaybackRate }}>
+      <Main>
+        <h1>Video archives</h1>
+        {DATA.map(({ id, video, createdBy, license }) => (
+          <article key={id}>
+            <VideoPlayer src={video.src} caption={video.caption} />
+            <DescriptionList>
+              <Term>Created by</Term>
+              <Description>{createdBy}</Description>
+              <Term>Licensed under</Term>
+              <Description>{license}</Description>
+            </DescriptionList>
+          </article>
+        ))}
+      </Main>
+    </PlaybackRateContext.Provider>
   );
 };
 

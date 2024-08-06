@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
+import { PlaybackRateContext } from '../PlabackRate';
 
 type VideoPlayerProps = {
   src: string;
@@ -10,13 +11,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, caption }) => {
   const playbackRateSelectId = React.useId();
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  const handlePlaybackRateChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const { playbackRate, setPlaybackRate } =
+    React.useContext(PlaybackRateContext);
+
+  React.useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = Number(event.target.value);
+      videoRef.current.playbackRate = parseInt(playbackRate);
     }
-  };
+  }, [playbackRate]);
 
   return (
     <div>
@@ -30,7 +32,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, caption }) => {
         <select
           id={playbackRateSelectId}
           defaultValue="1"
-          onChange={handlePlaybackRateChange}
+          value={playbackRate}
+          onChange={(event) => setPlaybackRate(event.target.value)}
         >
           <option value="0.5">0.5</option>
           <option value="1">1</option>

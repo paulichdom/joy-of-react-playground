@@ -1,10 +1,10 @@
+import ContextProviders from './components/ContextProviders';
 import Layout from './components/Layout';
-import PlaybackRate from './components/PlabackRate/PlaybackRate';
 
 function App() {
   return (
     <Layout>
-      <PlaybackRate />
+      <ContextProviders />
     </Layout>
   );
 }

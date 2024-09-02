@@ -1,10 +1,10 @@
-import ContextProviders from './components/ContextProviders';
 import Layout from './components/Layout';
+import ModalContainer from './components/Modal/ModalContainer';
 
 function App() {
   return (
     <Layout>
-      <ContextProviders />
+      <ModalContainer />
     </Layout>
   );
 }

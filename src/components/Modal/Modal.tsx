@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { X as Close } from 'react-feather';
 import FocusLock from 'react-focus-lock';
+import { RemoveScroll } from 'react-remove-scroll';
 
 type ModalProps = {
   handleDismiss: () => void;
@@ -27,15 +28,17 @@ const Modal: React.FC<ModalProps> = ({ handleDismiss, children }) => {
 
   return (
     <FocusLock>
-      <Wrapper>
-        <Backdrop />
-        <Dialog>
-          <CloseBtn ref={closeBtnRef} onClick={handleDismiss}>
-            <Close />
-          </CloseBtn>
-          {children}
-        </Dialog>
-      </Wrapper>
+      <RemoveScroll>
+        <Wrapper>
+          <Backdrop onClick={handleDismiss} />
+          <Dialog>
+            <CloseBtn ref={closeBtnRef} onClick={handleDismiss}>
+              <Close />
+            </CloseBtn>
+            {children}
+          </Dialog>
+        </Wrapper>
+      </RemoveScroll>
     </FocusLock>
   );
 };

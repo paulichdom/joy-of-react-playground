@@ -12,21 +12,6 @@ type ModalProps = {
 };
 
 const Modal: React.FC<ModalProps> = ({ title, handleDismiss, children }) => {
-  const closeBtnRef = React.useRef<HTMLButtonElement>(null);
-
-  React.useEffect(() => {
-    const currentlyFocused = document.activeElement;
-
-    if (closeBtnRef.current) {
-      closeBtnRef.current.focus();
-    }
-
-    return () => {
-      if (currentlyFocused) {
-        (currentlyFocused as HTMLElement).focus();
-      }
-    };
-  }, []);
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -43,12 +28,12 @@ const Modal: React.FC<ModalProps> = ({ title, handleDismiss, children }) => {
   }, [handleDismiss]);
 
   return (
-    <FocusLock>
+    <FocusLock returnFocus={true}>
       <RemoveScroll>
         <Wrapper>
           <Backdrop onClick={handleDismiss} />
           <Dialog role="dialog" aria-modal={true} aria-label={title}>
-            <CloseBtn ref={closeBtnRef} onClick={handleDismiss}>
+            <CloseBtn onClick={handleDismiss}>
               <Close />
               <VisuallyHidden>Dismiss modal</VisuallyHidden>
             </CloseBtn>

@@ -8,11 +8,27 @@ type ModalProps = {
 };
 
 const Modal: React.FC<ModalProps> = ({ handleDismiss, children }) => {
+  const closeBtnRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    const currentlyFocused = document.activeElement;
+
+    if (closeBtnRef.current) {
+      closeBtnRef.current.focus();
+    }
+
+    return () => {
+      if (currentlyFocused) {
+        (currentlyFocused as HTMLElement).focus();
+      }
+    };
+  }, []);
+
   return (
     <Wrapper>
       <Backdrop />
       <Dialog>
-        <CloseBtn onClick={handleDismiss}>
+        <CloseBtn ref={closeBtnRef} onClick={handleDismiss}>
           <Close />
         </CloseBtn>
         {children}
@@ -44,7 +60,7 @@ const Dialog = styled.div`
   padding: 32px;
 `;
 
-const CloseBtn = styled.div`
+const CloseBtn = styled.button`
   position: absolute;
   top: 0;
   right: 0;
@@ -52,4 +68,6 @@ const CloseBtn = styled.div`
   color: white;
   transform: translateY(-100%);
   cursor: pointer;
+  background: none;
+  border: none;
 `;

@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { X as Close } from 'react-feather';
 import styled from 'styled-components';
+import { X as Close } from 'react-feather';
+import FocusLock from 'react-focus-lock';
 
 type ModalProps = {
   handleDismiss: () => void;
@@ -25,15 +26,17 @@ const Modal: React.FC<ModalProps> = ({ handleDismiss, children }) => {
   }, []);
 
   return (
-    <Wrapper>
-      <Backdrop />
-      <Dialog>
-        <CloseBtn ref={closeBtnRef} onClick={handleDismiss}>
-          <Close />
-        </CloseBtn>
-        {children}
-      </Dialog>
-    </Wrapper>
+    <FocusLock>
+      <Wrapper>
+        <Backdrop />
+        <Dialog>
+          <CloseBtn ref={closeBtnRef} onClick={handleDismiss}>
+            <Close />
+          </CloseBtn>
+          {children}
+        </Dialog>
+      </Wrapper>
+    </FocusLock>
   );
 };
 

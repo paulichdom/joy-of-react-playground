@@ -26,6 +26,20 @@ const Modal: React.FC<ModalProps> = ({ handleDismiss, children }) => {
     };
   }, []);
 
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleDismiss();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleDismiss]);
+
   return (
     <FocusLock>
       <RemoveScroll>

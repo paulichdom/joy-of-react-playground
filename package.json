@@ -19,6 +19,7 @@
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
     "react-focus-lock": "^2.13.2",
+    "react-remove-scroll": "^2.6.0",
     "styled-components": "^6.1.11",
     "swr": "^2.2.5"
   },

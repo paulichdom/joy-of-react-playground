@@ -7,7 +7,7 @@ const ModalContainer = () => {
   return (
     <Wrapper>
       {isModalOpen && (
-        <Modal handleDismiss={toggleIsModalOpen}>
+        <Modal title="Modal example" handleDismiss={toggleIsModalOpen}>
           This is an example modal! It includes <a href="">several</a>{' '}
           <a href="">different</a> <a href="">links</a>.
         </Modal>

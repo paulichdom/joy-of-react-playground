@@ -3,13 +3,15 @@ import styled from 'styled-components';
 import { X as Close } from 'react-feather';
 import FocusLock from 'react-focus-lock';
 import { RemoveScroll } from 'react-remove-scroll';
+import VisuallyHidden from '../VisuallyHidden';
 
 type ModalProps = {
+  title: string;
   handleDismiss: () => void;
   children: React.ReactNode;
 };
 
-const Modal: React.FC<ModalProps> = ({ handleDismiss, children }) => {
+const Modal: React.FC<ModalProps> = ({ title, handleDismiss, children }) => {
   const closeBtnRef = React.useRef<HTMLButtonElement>(null);
 
   React.useEffect(() => {
@@ -45,9 +47,10 @@ const Modal: React.FC<ModalProps> = ({ handleDismiss, children }) => {
       <RemoveScroll>
         <Wrapper>
           <Backdrop onClick={handleDismiss} />
-          <Dialog>
+          <Dialog role="dialog" aria-modal={true} aria-label={title}>
             <CloseBtn ref={closeBtnRef} onClick={handleDismiss}>
               <Close />
+              <VisuallyHidden>Dismiss modal</VisuallyHidden>
             </CloseBtn>
             {children}
           </Dialog>

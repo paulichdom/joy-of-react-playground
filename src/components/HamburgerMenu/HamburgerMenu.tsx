@@ -1,7 +1,14 @@
-import * as React from 'react';
+import ImageGallery from './ImageGallery';
+import { data } from './data';
 
 const HamburgerMenu = () => {
-  return <div>HamburgerMenu</div>;
-}
+  return (
+    <>
+      <main>
+        <ImageGallery images={data} />
+      </main>
+    </>
+  );
+};
 
 export default HamburgerMenu;

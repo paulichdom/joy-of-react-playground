@@ -1,10 +1,10 @@
+import HamburgerMenu from './components/HamburgerMenu';
 import Layout from './components/Layout';
-import ModalContainer from './components/Modal/ModalContainer';
 
 function App() {
   return (
     <Layout>
-      <ModalContainer />
+      <HamburgerMenu />
     </Layout>
   );
 }

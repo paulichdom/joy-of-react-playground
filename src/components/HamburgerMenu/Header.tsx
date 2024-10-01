@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Menu } from 'react-feather';
 import styled from 'styled-components';
 import { useToggle } from '../../hooks/use-toggle';
+import Drawer from './Drawer';
 
 const Header: React.FC = () => {
   const [isMenuOpen, toggleIsMenuOpen] = useToggle(false);
@@ -13,20 +14,22 @@ const Header: React.FC = () => {
           <Menu />
         </HamburgerButton>
         {isMenuOpen && (
-          <NavigationList>
-            <li>
-              <a href="">Home</a>
-            </li>
-            <li>
-              <a href="">Gallery</a>
-            </li>
-            <li>
-              <a href="">Photographers</a>
-            </li>
-            <li>
-              <a href="">Submit Work</a>
-            </li>
-          </NavigationList>
+          <Drawer handleDismiss={toggleIsMenuOpen}>
+            <NavigationList>
+              <li>
+                <a href="">Home</a>
+              </li>
+              <li>
+                <a href="">Gallery</a>
+              </li>
+              <li>
+                <a href="">Photographers</a>
+              </li>
+              <li>
+                <a href="">Submit Work</a>
+              </li>
+            </NavigationList>
+          </Drawer>
         )}
       </div>
     </header>

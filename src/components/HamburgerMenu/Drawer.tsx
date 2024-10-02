@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { X as Close } from 'react-feather';
-//import FocusLock from 'react-focus-lock';
+import FocusLock from 'react-focus-lock';
 //import { RemoveScroll } from 'react-remove-scroll';
 
 type DrawerProps = {
@@ -11,15 +11,17 @@ type DrawerProps = {
 
 const Drawer: React.FC<DrawerProps> = ({ handleDismiss, children }) => {
   return (
-    <Wrapper>
-      <Backdrop />
-      <DrawerWrapper>
-        <div>{children}</div>
-        <CloseButton onClick={handleDismiss}>
-          <Close size={18} /> Dismiss
-        </CloseButton>
-      </DrawerWrapper>
-    </Wrapper>
+    <FocusLock>
+      <Wrapper>
+        <Backdrop />
+        <DrawerWrapper>
+          <div>{children}</div>
+          <CloseButton onClick={handleDismiss}>
+            <Close size={18} /> Dismiss
+          </CloseButton>
+        </DrawerWrapper>
+      </Wrapper>
+    </FocusLock>
   );
 };
 

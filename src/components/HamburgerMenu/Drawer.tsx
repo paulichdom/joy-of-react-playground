@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { X as Close } from 'react-feather';
 import FocusLock from 'react-focus-lock';
-//import { RemoveScroll } from 'react-remove-scroll';
+import { RemoveScroll } from 'react-remove-scroll';
+import VisuallyHidden from '../VisuallyHidden';
 
 type DrawerProps = {
   handleDismiss: () => void;
@@ -10,18 +11,35 @@ type DrawerProps = {
 };
 
 const Drawer: React.FC<DrawerProps> = ({ handleDismiss, children }) => {
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleDismiss();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleDismiss]);
+
   return (
-    <FocusLock>
-      <Wrapper>
-        <Backdrop />
-        <DrawerWrapper>
-          <div>{children}</div>
-          <CloseButton onClick={handleDismiss}>
-            <Close size={18} /> Dismiss
-          </CloseButton>
-        </DrawerWrapper>
-      </Wrapper>
-    </FocusLock>
+    <RemoveScroll>
+      <FocusLock returnFocus={true}>
+        <Wrapper>
+          <Backdrop onClick={handleDismiss} />
+          <DrawerWrapper>
+            <div>{children}</div>
+            <CloseButton onClick={handleDismiss}>
+              <Close size={18} /> Dismiss
+              <VisuallyHidden>Dismiss drawer</VisuallyHidden>
+            </CloseButton>
+          </DrawerWrapper>
+        </Wrapper>
+      </FocusLock>
+    </RemoveScroll>
   );
 };
 

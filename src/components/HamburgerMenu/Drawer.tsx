@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { X as Close } from 'react-feather';
 //import FocusLock from 'react-focus-lock';
 //import { RemoveScroll } from 'react-remove-scroll';
@@ -12,12 +12,13 @@ type DrawerProps = {
 const Drawer: React.FC<DrawerProps> = ({ handleDismiss, children }) => {
   return (
     <Wrapper>
-      <Backdrop>
-        <DrawerWrapper>{children}</DrawerWrapper>
+      <Backdrop />
+      <DrawerWrapper>
+        <div>{children}</div>
         <CloseButton onClick={handleDismiss}>
-          <Close size={18}/> Dismiss
+          <Close size={18} /> Dismiss
         </CloseButton>
-      </Backdrop>
+      </DrawerWrapper>
     </Wrapper>
   );
 };
@@ -30,12 +31,24 @@ const Wrapper = styled.div`
   padding: 16px;
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+`;
+
 const Backdrop = styled.div`
   position: absolute;
   inset: 0;
   background: hsl(350deg 100% 30% / 0.75);
   backdrop-filter: blur(3px);
-  animation: fadeIn 850ms cubic-bezier(0.14, 0.78, 0.36, 1);
+  animation: ${fadeIn} 850ms cubic-bezier(0.14, 0.78, 0.36, 1);
+`;
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(100%);
+  }
 `;
 
 const DrawerWrapper = styled.div`
@@ -51,7 +64,7 @@ const DrawerWrapper = styled.div`
   justify-content: space-between;
   background: white;
   padding: 32px;
-  animation: slideIn 500ms cubic-bezier(0.14, 0.78, 0.36, 1);
+  animation: ${slideIn} 500ms cubic-bezier(0.14, 0.78, 0.36, 1);
 `;
 
 const CloseButton = styled.button`

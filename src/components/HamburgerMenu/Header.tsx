@@ -7,7 +7,7 @@ import Drawer from './Drawer';
 const Header: React.FC = () => {
   const [isMenuOpen, toggleIsMenuOpen] = useToggle(false);
   return (
-    <header>
+    <HeaderWrapper>
       <a href="">Kaboom</a>
       <div>
         <HamburgerButton onClick={() => toggleIsMenuOpen()}>
@@ -32,11 +32,26 @@ const Header: React.FC = () => {
           </Drawer>
         )}
       </div>
-    </header>
+    </HeaderWrapper>
   );
 };
 
 export default Header;
+
+const HeaderWrapper = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding: 16px;
+
+  & > a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 1.25rem;
+  }
+`;
 
 const HamburgerButton = styled.button`
   background: transparent;

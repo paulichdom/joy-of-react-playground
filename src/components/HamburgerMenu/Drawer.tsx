@@ -4,6 +4,7 @@ import { X as Close } from 'react-feather';
 import FocusLock from 'react-focus-lock';
 import { RemoveScroll } from 'react-remove-scroll';
 import VisuallyHidden from '../VisuallyHidden';
+import { useEscapeKey } from '../../hooks/use-escape-key';
 
 type DrawerProps = {
   handleDismiss: () => void;
@@ -11,19 +12,7 @@ type DrawerProps = {
 };
 
 const Drawer: React.FC<DrawerProps> = ({ handleDismiss, children }) => {
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        handleDismiss();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleDismiss]);
+  useEscapeKey(handleDismiss);
 
   return (
     <RemoveScroll>

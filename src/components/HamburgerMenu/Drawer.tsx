@@ -22,7 +22,7 @@ const Drawer: React.FC<DrawerProps> = ({ handleDismiss, children }) => {
           <DrawerWrapper>
             <div>{children}</div>
             <CloseButton onClick={handleDismiss}>
-              <Close size={18} /> Dismiss
+              <Close size={18} aria-hidden="true" focusable="false" /> Dismiss
               <VisuallyHidden>Dismiss drawer</VisuallyHidden>
             </CloseButton>
           </DrawerWrapper>

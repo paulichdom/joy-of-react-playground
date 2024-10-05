@@ -3,15 +3,20 @@ import { Menu } from 'react-feather';
 import styled from 'styled-components';
 import { useToggle } from '../../hooks/use-toggle';
 import Drawer from './Drawer';
+import VisuallyHidden from '../VisuallyHidden';
 
 const Header: React.FC = () => {
   const [isMenuOpen, toggleIsMenuOpen] = useToggle(false);
   return (
     <HeaderWrapper>
       <a href="">Kaboom</a>
-      <div>
-        <HamburgerButton onClick={() => toggleIsMenuOpen()}>
-          <Menu />
+      <nav role="navigation" aria-label="Main menu">
+        <HamburgerButton
+          aria-expanded={isMenuOpen}
+          onClick={() => toggleIsMenuOpen()}
+        >
+          <Menu aria-hidden="true" focusable="false" />
+          <VisuallyHidden>Open main menu</VisuallyHidden>
         </HamburgerButton>
         {isMenuOpen && (
           <Drawer handleDismiss={toggleIsMenuOpen}>
@@ -31,7 +36,7 @@ const Header: React.FC = () => {
             </NavigationList>
           </Drawer>
         )}
-      </div>
+      </nav>
     </HeaderWrapper>
   );
 };

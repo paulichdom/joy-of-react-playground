@@ -1,10 +1,10 @@
-import HamburgerMenu from './components/HamburgerMenu';
+import FrequentlyAskedQuestions from './components/FrequentlyAskedQuestions';
 import Layout from './components/Layout';
 
 function App() {
   return (
     <Layout>
-      <HamburgerMenu />
+      <FrequentlyAskedQuestions />
     </Layout>
   );
 }

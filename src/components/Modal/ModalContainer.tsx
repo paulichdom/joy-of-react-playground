@@ -1,17 +1,28 @@
 import styled from 'styled-components';
 import { useToggle } from '../../hooks/use-toggle';
-import Modal from './Modal';
+//import Modal from './Modal';
+import HeadlessUiDialog from './HeadlessUiDialog';
+import LoginForm from './LoginForm';
 
 const ModalContainer = () => {
   const [isModalOpen, toggleIsModalOpen] = useToggle(false);
   return (
     <Wrapper>
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <Modal title="Modal example" handleDismiss={toggleIsModalOpen}>
           This is an example modal! It includes <a href="">several</a>{' '}
           <a href="">different</a> <a href="">links</a>.
         </Modal>
-      )}
+      )} */}
+      
+      <HeadlessUiDialog
+        title="Log in"
+        isOpen={isModalOpen}
+        handleDismiss={toggleIsModalOpen}
+      >
+        <LoginForm />
+      </HeadlessUiDialog>
+
       <button onClick={toggleIsModalOpen}>Toggle modal</button>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting

@@ -1,12 +1,12 @@
-import AsteriskDemo from './components/Asterisk/AsteriskDemo';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import Layout from './components/Layout';
+import ModalContainer from './components/Modal/ModalContainer';
 
 function App() {
   return (
     <Tooltip.Provider delayDuration={200}>
       <Layout>
-        <AsteriskDemo />
+        <ModalContainer />
       </Layout>
     </Tooltip.Provider>
   );

@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { DATA } from './data';
+import Accordion from './Accordion/Accordion';
 
 const FrequentlyAskedQuestions: React.FC = () => {
   return (
-    <ul>
-      {DATA.map((item) => (
-        <li>{item.question}</li>
-      ))}
-    </ul>
-    
+    <Accordion data={DATA}/>
   );
 };
 

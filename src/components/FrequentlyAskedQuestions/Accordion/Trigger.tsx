@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
-import { ChevronDownIcon } from '@radix-ui/themes';
 import classNames from 'classnames';
+import { ChevronDown } from 'react-feather';
 
 type AccordionTriggerProps = React.ComponentProps<'button'> & {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ const AccordionTrigger: React.FC<AccordionTriggerProps> = React.forwardRef(
         ref={forwardedRef}
       >
         {children}
-        <ChevronDownIcon className="AccordionChevron" aria-hidden />
+        <ChevronDown className="AccordionChevron" aria-hidden />
       </Accordion.Trigger>
     </Accordion.Header>
   )

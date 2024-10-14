@@ -45,3 +45,16 @@
   flex-shrink: 0;
   transform: translateY(3px);
 }
+
+.item[data-state="open"] svg {
+  animation:
+    rotate-open
+    350ms
+    forwards
+}
+
+@keyframes rotate-open {
+ 100% {
+    transform: rotate(180deg);
+  }
+}

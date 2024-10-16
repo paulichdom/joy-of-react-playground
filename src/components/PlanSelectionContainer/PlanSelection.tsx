@@ -11,7 +11,7 @@ const PlanSelection: React.FC<{ plans: Plan[] }> = ({ plans }) => {
 
   return (
     <>
-      <PriceDisplay price={selectedPlan.price} />
+      <PriceDisplay id={selectedPlan.id} price={selectedPlan.price} />
 
       <fieldset className={styles.fieldset}>
         <legend>Select plan:</legend>

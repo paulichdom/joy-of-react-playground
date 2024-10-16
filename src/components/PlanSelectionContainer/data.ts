@@ -21,6 +21,11 @@ export const PLANS: Plan[] = [
     price: 250,
   },
   {
+    label: 'Expert (Individual)',
+    id: 'expert',
+    price: 250,
+  },
+  {
     label: 'Enterprise',
     id: 'enterprise',
     price: 999,

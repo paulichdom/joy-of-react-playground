@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './PriceDisplay.module.css';
 
-const PriceDisplay: React.FC<{ price: number }> = ({ price }) => {
+const PriceDisplay: React.FC<{ price: number, id: string }> = ({ price, id }) => {
   const formattedPrice = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -9,7 +9,7 @@ const PriceDisplay: React.FC<{ price: number }> = ({ price }) => {
 
   return (
     <div className={styles.wrapper}>
-      <div key={price} className={styles.animated}>{formattedPrice}</div>
+      <div key={id} className={styles.animated}>{formattedPrice}</div>
     </div>
   );
 };

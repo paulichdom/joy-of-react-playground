@@ -9,7 +9,7 @@ const PriceDisplay: React.FC<{ price: number }> = ({ price }) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.animated}>{formattedPrice}</div>
+      <div key={price} className={styles.animated}>{formattedPrice}</div>
     </div>
   );
 };

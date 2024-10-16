@@ -4,9 +4,9 @@ import styles from './PlanSelection.module.css';
 import { Plan } from './data';
 import PriceDisplay from './PriceDisplay';
 
-const PlanSelection: React.FC<{plans: Plan[]}> = ({ plans }) => {
+const PlanSelection: React.FC<{ plans: Plan[] }> = ({ plans }) => {
   const id = React.useId();
-  
+
   const [selectedPlan, setSelectedPlan] = React.useState(plans[0]);
 
   return (
@@ -18,7 +18,7 @@ const PlanSelection: React.FC<{plans: Plan[]}> = ({ plans }) => {
         <div className={styles.optionGroup}>
           {plans.map((plan) => {
             const uniquePlanId = `${id}-${plan.id}`;
-  
+
             return (
               <div className={styles.option} key={plan.id}>
                 <input
@@ -28,9 +28,7 @@ const PlanSelection: React.FC<{plans: Plan[]}> = ({ plans }) => {
                   checked={plan === selectedPlan}
                   onChange={() => setSelectedPlan(plan)}
                 />
-                <label htmlFor={uniquePlanId}>
-                  {plan.label}
-                </label>
+                <label htmlFor={uniquePlanId}>{plan.label}</label>
               </div>
             );
           })}
@@ -38,6 +36,6 @@ const PlanSelection: React.FC<{plans: Plan[]}> = ({ plans }) => {
       </fieldset>
     </>
   );
-}
+};
 
 export default PlanSelection;

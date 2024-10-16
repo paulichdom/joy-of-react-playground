@@ -25,4 +25,4 @@ export const PLANS: Plan[] = [
     id: 'enterprise',
     price: 999,
   },
-]
+];

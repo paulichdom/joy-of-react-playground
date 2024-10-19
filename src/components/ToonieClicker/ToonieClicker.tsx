@@ -3,17 +3,36 @@ import BigCoin from '../CanadianToonie/BigCoin';
 import FloatingText from './FloatingText';
 import styled from 'styled-components';
 
+const PIGGY_BANK_COST = 9;
+
 function ToonieClicker() {
   const [numOfCoins, setNumOfCoins] = React.useState(0);
+  const [numOfPiggyBanks, setNumOfPiggyBanks] = React.useState(0);
+  const [floatingTextKey, setFloatingTextKey] = React.useState('initial');
+
+  const clickCoin = () => {
+    setNumOfCoins(numOfCoins + 2);
+    setFloatingTextKey(crypto.randomUUID());
+  };
+
+  const buyPiggyBank = () => {
+    setNumOfCoins(numOfCoins - PIGGY_BANK_COST);
+    setNumOfPiggyBanks(numOfPiggyBanks + 1);
+  };
+
   return (
     <Wrapper>
       <Main>
-        <BigCoin numOfCoins={numOfCoins} setNumOfCoins={setNumOfCoins} />
-        {numOfCoins > 0 && (
+        <BigCoin handleCoinClick={clickCoin} />
+        {floatingTextKey !== 'initial' && (
           <FloatingNumWrapper>
-            <FloatingText key={numOfCoins}>+2</FloatingText>
+            <FloatingText key={floatingTextKey}>+2</FloatingText>
           </FloatingNumWrapper>
         )}
+        <Button disabled={numOfCoins < PIGGY_BANK_COST} onClick={buyPiggyBank}>
+          Buy Piggy Bank
+          {numOfPiggyBanks > 0 && `(${numOfPiggyBanks})`}
+        </Button>
       </Main>
       <Footer>
         <p>Your coin balance:</p>
@@ -35,6 +54,7 @@ const Wrapper = styled.div`
 const Main = styled.main`
   position: relative;
   display: grid;
+  gap: 32px;
   place-content: center;
 `;
 
@@ -50,6 +70,8 @@ const FloatingNumWrapper = styled.div`
   pointer-events: none;
   user-select: none;
 `;
+
+const Button = styled.button``;
 
 const Footer = styled.footer`
   padding: 16px;

@@ -2,22 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 type BigCoinProps = {
-  numOfCoins: number;
-  setNumOfCoins: React.Dispatch<React.SetStateAction<number>>;
-}
+  handleCoinClick: () => void;
+};
 
-const BigCoin: React.FC<BigCoinProps> = ({numOfCoins, setNumOfCoins}) => {
-  
-
+const BigCoin: React.FC<BigCoinProps> = ({ handleCoinClick }) => {
   return (
     <div>
-      <CoinButton onClick={() => setNumOfCoins(numOfCoins + 2)}>
+      <CoinButton onClick={handleCoinClick}>
         <VisuallyHidden>Add 2 coins</VisuallyHidden>
         <img alt="" src="https://sandpack-bundler.vercel.app/img/toonie.png" />
       </CoinButton>
     </div>
   );
-}
+};
 
 export default BigCoin;
 

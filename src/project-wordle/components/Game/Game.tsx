@@ -1,3 +1,5 @@
+import GuessInput from "../GuessInput";
+
 // Pick a random word on every page-load.
 import {sample} from "../../utils.ts";
 import {WORDS} from "../../data.ts";
@@ -7,7 +9,9 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  return <>Put a game here!</>;
+  return <>
+    <GuessInput />
+  </>;
 }
 
 export default Game;

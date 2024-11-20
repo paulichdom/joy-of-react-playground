@@ -1,11 +1,11 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 type LayoutProps = {
   children: ReactNode;
 };
 
-// Footer is commented out temp to gain more realestate and ease of use
+// Footer is commented out temp to gain more real estate and ease of use
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Container>
@@ -41,8 +41,9 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   padding: 16px 24px;
-  color: white;
-  background-color: hsl(250deg 15% 25%);
+  color: black;
+  background-color: white;
+  border-bottom: 1px solid gray;
 `;
 
 const Main = styled.main`

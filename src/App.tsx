@@ -1,12 +1,12 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
 import Layout from './components/Layout';
-import ToonieClicker from './components/ToonieClicker';
+import Wordle from "./project-wordle/components/Wordle";
 
 function App() {
   return (
     <Tooltip.Provider delayDuration={200}>
       <Layout>
-        <ToonieClicker />
+        <Wordle />
       </Layout>
     </Tooltip.Provider>
   );

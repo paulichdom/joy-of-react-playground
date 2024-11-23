@@ -1,15 +1,18 @@
 import React from "react";
-import {Guess} from "../Game";
+import {GuessType} from "../Game";
+import Guess from "../Guess";
+import {NUM_OF_GUESSES_ALLOWED} from "../../constants.ts";
+import {range} from "../../utils.ts";
 
 type GuessResultsProps = {
-  guesses: Guess[]
+  guesses: GuessType[]
 }
 
 const GuessResults: React.FC<GuessResultsProps> = ({guesses}) =>  {
   return (
     <div className="guess-results">
-      {guesses.map((guess) => (
-        <p key={guess.id} className="guess">{guess.value}</p>
+      {range(NUM_OF_GUESSES_ALLOWED).map((num) => (
+        <Guess key={num} value={guesses[num]?.value} />
       ))}
     </div>
   );

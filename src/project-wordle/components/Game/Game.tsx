@@ -6,7 +6,7 @@ import {sample} from "../../utils.ts";
 import {WORDS} from "../../data.ts";
 import {useState} from "react";
 
-export type Guess = {
+export type GuessType = {
   value: string;
   id: string;
 }
@@ -15,7 +15,7 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [guesses, setGuesses] = useState<Guess[]>([]);
+  const [guesses, setGuesses] = useState<GuessType[]>([]);
 
   const handleSubmitGuess = (tentativeGuess: string) => {
     const nextGuess = {

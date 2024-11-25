@@ -18,9 +18,8 @@ type GuessProps = {
   value: string | undefined;
   answer: string;
 }
-const Guess: React.FC<GuessProps> = ({value, answer}) => {
+const Guess: React.FC<GuessProps> = React.memo(({value, answer}) => {
   const result = checkGuess(value ?? '', answer);
-  console.log({result});
   return <p className="guess">
     {range(5).map((num) => (
       <Cell
@@ -30,6 +29,6 @@ const Guess: React.FC<GuessProps> = ({value, answer}) => {
       />
     ))}
   </p>;
-}
+});
 
 export default Guess;

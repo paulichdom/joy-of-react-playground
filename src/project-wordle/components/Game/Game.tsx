@@ -6,6 +6,7 @@ import GuessResults from "../GuessResults";
 import {sample} from "../../utils.ts";
 import {WORDS} from "../../data.ts";
 import {NUM_OF_GUESSES_ALLOWED} from "../../constants.ts";
+import GameOverBanner from "../GameOverBanner";
 
 export type GameStatus = 'running' | 'won' | 'lost'
 
@@ -38,7 +39,6 @@ function Game() {
 
   return (
     <Fragment>
-      {gameStatus}
       <GuessResults
         guesses={guesses}
         answer={answer}
@@ -47,6 +47,13 @@ function Game() {
         gameStatus={gameStatus}
         handleSubmitGuess={handleSubmitGuess}
       />
+      {gameStatus !== 'running' && (
+        <GameOverBanner
+          gameStatus={gameStatus}
+          numOfGuesses={guesses.length}
+          answer={answer}
+        />
+      )}
     </Fragment>
   )
 }

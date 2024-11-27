@@ -1,18 +1,12 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
 import Layout from './components/Layout';
-
-import ComposeTweet from "./components/ComposeTweet";
+import Wordle from "./project-wordle/components/Wordle";
 
 function App() {
   return (
     <Tooltip.Provider delayDuration={200}>
       <Layout>
-        <ComposeTweet
-          handleSubmit={(message) => {
-            alert('You submitted: ' + message);
-          }}
-          maxChars={100}
-        />
+        <Wordle />
       </Layout>
     </Tooltip.Provider>
   );

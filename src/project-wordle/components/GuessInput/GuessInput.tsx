@@ -1,10 +1,12 @@
 import React, {FormEvent, useState} from "react";
+import {GameStatus} from "../Game";
 
 type GuessInputProps = {
+  gameStatus: GameStatus
   handleSubmitGuess: (tentativeGuess: string) => void;
 }
 
-const GuessInput: React.FC<GuessInputProps> = ({handleSubmitGuess}) =>  {
+const GuessInput: React.FC<GuessInputProps> = ({gameStatus, handleSubmitGuess}) =>  {
   const [tentativeGuess, setTentativeGuess] = useState('')
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -32,6 +34,7 @@ const GuessInput: React.FC<GuessInputProps> = ({handleSubmitGuess}) =>  {
           const nextGuess = event.target.value.toUpperCase()
           setTentativeGuess(nextGuess)
         }}
+        disabled={gameStatus !== 'running'}
       />
     </form>
   );

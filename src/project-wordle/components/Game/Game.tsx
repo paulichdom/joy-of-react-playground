@@ -1,10 +1,13 @@
+import {Fragment, useState} from "react";
+
 import GuessInput from "../GuessInput";
 import GuessResults from "../GuessResults";
-
 // Pick a random word on every page-load.
 import {sample} from "../../utils.ts";
 import {WORDS} from "../../data.ts";
-import {useState} from "react";
+import {NUM_OF_GUESSES_ALLOWED} from "../../constants.ts";
+
+export type GameStatus = 'running' | 'won' | 'lost'
 
 export type GuessType = {
   value: string;
@@ -15,6 +18,7 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
+  const [gameStatus, setGameStatus] = useState<GameStatus>('running');
   const [guesses, setGuesses] = useState<GuessType[]>([]);
 
   const handleSubmitGuess = (tentativeGuess: string) => {
@@ -22,14 +26,28 @@ function Game() {
       value: tentativeGuess,
       id: `${tentativeGuess}-${Math.random()}`,
     }
-    setGuesses([...guesses, nextGuess]);
+    const nextGuesses = [...guesses, nextGuess]
+    setGuesses(nextGuesses);
+
+    if(tentativeGuess.toUpperCase() === answer) {
+      setGameStatus('won');
+    } else if (nextGuesses.length >= NUM_OF_GUESSES_ALLOWED) {
+      setGameStatus('lost')
+    }
   }
 
   return (
-    <>
-      <GuessResults guesses={guesses} answer={answer} />
-      <GuessInput handleSubmitGuess={handleSubmitGuess} />
-    </>
+    <Fragment>
+      {gameStatus}
+      <GuessResults
+        guesses={guesses}
+        answer={answer}
+      />
+      <GuessInput
+        gameStatus={gameStatus}
+        handleSubmitGuess={handleSubmitGuess}
+      />
+    </Fragment>
   )
 }
 

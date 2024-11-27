@@ -1,0 +1,16 @@
+import * as React from 'react';
+import Banner from "../Banner";
+
+type LostBannerProps = {
+  answer: string;
+}
+
+const LostBanner: React.FC<LostBannerProps> = ({answer}) => {
+  return (
+    <Banner status='sad'>
+    <p>Sorry, the correct answer is <strong>{answer}</strong>.</p>
+  </Banner>
+  )
+}
+
+export default LostBanner;

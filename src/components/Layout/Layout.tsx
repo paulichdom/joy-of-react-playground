@@ -40,7 +40,6 @@ const Header = styled.header`
   grid-area: header;
   display: flex;
   justify-content: center;
-  padding: 16px 24px;
   color: black;
   background-color: white;
   border-bottom: 1px solid gray;

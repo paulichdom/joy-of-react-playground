@@ -10,14 +10,7 @@ type ComposeTweetProps = {
 
 const ComposeTweet: React.FC<ComposeTweetProps> = ({ maxChars, handleSubmit }) => {
   const [message, setMessage] = React.useState('');
-  const [charsRemaining, setCharsRemaining] =
-    React.useState(maxChars);
-
   const id = React.useId();
-
-  React.useEffect(() => {
-    setCharsRemaining(maxChars - message.length);
-  }, [maxChars, message]);
 
   return (
     <form
@@ -34,14 +27,14 @@ const ComposeTweet: React.FC<ComposeTweetProps> = ({ maxChars, handleSubmit }) =
           className={styles.count}
           style={{
             color: getCharacterColor(
-              charsRemaining
+              maxChars - message.length
             ),
           }}
         >
           <VisuallyHidden>
             Characters remaining:{' '}
           </VisuallyHidden>
-          {charsRemaining}
+          {maxChars - message.length}
         </span>
       </div>
 
@@ -51,6 +44,7 @@ const ComposeTweet: React.FC<ComposeTweetProps> = ({ maxChars, handleSubmit }) =
         placeholder="What's happening?"
         required={true}
         value={message}
+        maxLength={maxChars}
         onChange={(event) => {
           setMessage(event.target.value);
         }}

@@ -1,21 +1,30 @@
-import React, { ReactNode } from 'react';
-import styled from 'styled-components';
+import React, { ReactNode } from "react";
+import styled from "styled-components";
+import { ComponentSelector } from "../ComponentSelector";
+import { ComponentKey } from "..";
 
 type LayoutProps = {
+  selectedComponent: ComponentKey;
+  setSelectedComponent: React.Dispatch<React.SetStateAction<ComponentKey>>;
   children: ReactNode;
 };
 
 // Footer is commented out temp to gain more real estate and ease of use
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({
+  children,
+  selectedComponent,
+  setSelectedComponent,
+}) => {
   return (
     <Container>
       <Header>
         <h1>Sandbox</h1>
+        <ComponentSelector
+          selectedComponent={selectedComponent}
+          setSelectedComponent={setSelectedComponent}
+        />
       </Header>
       <Main>{children}</Main>
-      {/*  <Footer>
-        <p>2024</p>
-      </Footer> */}
     </Container>
   );
 };
@@ -30,8 +39,8 @@ const Container = styled.div`
   grid-row-gap: 32px;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    'header header header'
-    '. main .';
+    "header header header"
+    ". main .";
   /* 'footer footer footer'; */
   min-height: 100%;
 `;
@@ -39,10 +48,11 @@ const Container = styled.div`
 const Header = styled.header`
   grid-area: header;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   color: black;
   background-color: white;
   border-bottom: 1px solid gray;
+  padding: 8px;
 `;
 
 const Main = styled.main`

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { produce } from "immer";
 import styled from "styled-components";
 
 type State = {
@@ -25,31 +26,25 @@ const INITIAL_STATE: State = {
 };
 
 const reducer: React.Reducer<State, Action> = (state, action) => {
-  switch (action.type) {
-    case "add-color": {
-      return {
-        ...state,
-        numOfVisibleColors: state.numOfVisibleColors + 1,
-      };
+  return produce(state, (draftState) => {
+    switch (action.type) {
+      case "add-color": {
+        draftState.numOfVisibleColors += 1;
+        break;
+      }
+      case "remove-color": {
+        draftState.numOfVisibleColors -= 1;
+        break;
+      }
+      case "change-color": {
+        draftState.colors[action.index] = action.value;
+        break;
+      }
+      default: {
+        return state;
+      }
     }
-    case "remove-color": {
-      return {
-        ...state,
-        numOfVisibleColors: state.numOfVisibleColors - 1,
-      };
-    }
-    case "change-color": {
-      const nextColors = [...state.colors];
-      nextColors[action.index] = action.value;
-      return {
-        ...state,
-        colors: nextColors,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
+  });
 };
 
 const GradientGenerator: React.FC = () => {

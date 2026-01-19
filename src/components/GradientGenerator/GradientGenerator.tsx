@@ -1,37 +1,82 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react";
+import styled from "styled-components";
+
+type State = {
+  colors: string[];
+  numOfVisibleColors: number;
+};
+
+type Action =
+  | {
+      type: "add-color";
+    }
+  | {
+      type: "remove-color";
+    }
+  | {
+      type: "change-color";
+      index: number;
+      value: string;
+    };
+
+const INITIAL_STATE: State = {
+  colors: ["#FFD500", "#FF0040", "#FF0040", "#FF0040", "#FF0040"],
+  numOfVisibleColors: 2,
+};
+
+const reducer: React.Reducer<State, Action> = (state, action) => {
+  switch (action.type) {
+    case "add-color": {
+      return {
+        ...state,
+        numOfVisibleColors: state.numOfVisibleColors + 1,
+      };
+    }
+    case "remove-color": {
+      return {
+        ...state,
+        numOfVisibleColors: state.numOfVisibleColors - 1,
+      };
+    }
+    case "change-color": {
+      const nextColors = [...state.colors];
+      nextColors[action.index] = action.value;
+      return {
+        ...state,
+        colors: nextColors,
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
 
 const GradientGenerator: React.FC = () => {
-  const [colors, setColors] = React.useState([
-    '#FFD500',
-    '#FF0040',
-    '#FF0040',
-    '#FF0040',
-    '#FF0040',
-  ]);
-  const [numOfVisibleColors, setNumOfVisibleColors] = React.useState(2);
+  const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
+  const { colors, numOfVisibleColors } = state;
 
   const visibleColors = colors.slice(0, numOfVisibleColors);
 
-  const colorStops = visibleColors.join(', ');
+  const colorStops = visibleColors.join(", ");
   const backgroundImage = `linear-gradient(${colorStops})`;
 
   function handleAddColor() {
     if (numOfVisibleColors >= 5) {
-      window.alert('There is a maximum of 5 colors');
+      window.alert("There is a maximum of 5 colors");
       return;
     }
 
-    setNumOfVisibleColors(numOfVisibleColors + 1);
+    dispatch({ type: "add-color" });
   }
 
   function handleRemoveColor() {
     if (numOfVisibleColors <= 2) {
-      window.alert('There is a minimum of 2 colors');
+      window.alert("There is a minimum of 2 colors");
       return;
     }
 
-    setNumOfVisibleColors(numOfVisibleColors - 1);
+    dispatch({ type: "remove-color" });
   }
 
   return (
@@ -54,9 +99,11 @@ const GradientGenerator: React.FC = () => {
                   type="color"
                   value={color}
                   onChange={(event) => {
-                    const newColors = [...colors];
-                    newColors.splice(index, 1, event.target.value);
-                    setColors(newColors);
+                    dispatch({
+                      type: "change-color",
+                      index,
+                      value: event.target.value,
+                    });
                   }}
                 />
               </div>

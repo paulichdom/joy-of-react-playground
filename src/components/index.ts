@@ -1,7 +1,14 @@
 import GradientGenerator from "./GradientGenerator";
 import ShoppingCart from "./ShoppingCart";
+import { ShoppingList } from "./ShoppingList";
+import Todo from "./Todo/Todo";
 
-export type ComponentKey = "gradient-generator" | "shopping-cart";
+export type ComponentKey =
+  | "gradient-generator"
+  | "shopping-cart"
+  | "shopping-list"
+  | "todo-list";
+
 export type ComponentRecord = Record<
   ComponentKey,
   { name: string; component: React.ComponentType }
@@ -15,5 +22,13 @@ export const components: ComponentRecord = {
   "shopping-cart": {
     name: "Shopping Cart",
     component: ShoppingCart,
+  },
+  "shopping-list": {
+    name: "Shopping List",
+    component: ShoppingList,
+  },
+  "todo-list": {
+    name: "Todo List",
+    component: Todo,
   },
 };

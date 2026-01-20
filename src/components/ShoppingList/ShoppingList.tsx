@@ -7,7 +7,7 @@ export type ListItem = {
   id: number;
 };
 
-export const App: React.FC = () => {
+export const ShoppingList: React.FC = () => {
   const [shoppingList, setShoppingList] = React.useState<ListItem[]>([]);
   const hasItemsInList = shoppingList.length > 0;
 
@@ -24,18 +24,16 @@ export const App: React.FC = () => {
   return (
     <Wrapper>
       <ListWrapper>
-        <ShoppingList>
+        <OrderedList>
           {!hasItemsInList && 'List is empty, try adding new items'}
           {hasItemsInList &&
             shoppingList.map((item) => <li key={item.id}>{item.label}</li>)}
-        </ShoppingList>
+        </OrderedList>
       </ListWrapper>
       <AddNewItemForm handleAddItem={handleAddItem} />
     </Wrapper>
   );
 };
-
-export default App;
 
 const Wrapper = styled.div`
   display: flex;
@@ -51,7 +49,7 @@ const ListWrapper = styled.div`
   width: 100%;
 `;
 
-const ShoppingList = styled.ol`
+const OrderedList = styled.ol`
   display: flex;
   flex-direction: column;
   list-style-type: none;

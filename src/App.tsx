@@ -4,8 +4,13 @@ import { useState } from "react";
 import { ComponentKey, components } from "./components";
 
 function App() {
+  const componentsKeys = Object.keys(components);
+  const defaultComponent = componentsKeys[
+    componentsKeys.length - 1
+  ] as ComponentKey;
+  
   const [selectedComponent, setSelectedComponent] =
-    useState<ComponentKey>("gradient-generator");
+    useState<ComponentKey>(defaultComponent);
 
   const SelectedComponent = components[selectedComponent].component;
 

@@ -1,4 +1,5 @@
 import GradientGenerator from "./GradientGenerator";
+import { PortalSandbox } from "./Portal";
 import ShoppingCart from "./ShoppingCart";
 import { ShoppingList } from "./ShoppingList";
 import Todo from "./Todo/Todo";
@@ -7,7 +8,8 @@ export type ComponentKey =
   | "gradient-generator"
   | "shopping-cart"
   | "shopping-list"
-  | "todo-list";
+  | "todo-list"
+  | "portal";
 
 export type ComponentRecord = Record<
   ComponentKey,
@@ -30,5 +32,9 @@ export const components: ComponentRecord = {
   "todo-list": {
     name: "Todo List",
     component: Todo,
+  },
+  portal: {
+    name: "Portal",
+    component: PortalSandbox,
   },
 };

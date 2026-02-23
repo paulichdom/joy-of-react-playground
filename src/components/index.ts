@@ -1,3 +1,4 @@
+import Accordion from "./Accordion";
 import GradientGenerator from "./GradientGenerator";
 import JobBoard from "./JobBoard";
 import { PortalSandbox } from "./Portal";
@@ -13,7 +14,8 @@ export type ComponentKey =
   | "todo-list"
   | "portal"
   | "red-square"
-  | "job-board";
+  | "job-board"
+  | "accordion";
 
 export type ComponentRecord = Record<
   ComponentKey,
@@ -48,5 +50,9 @@ export const components: ComponentRecord = {
   "job-board": {
     name: "Job Board",
     component: JobBoard,
+  },
+  accordion: {
+    name: "Accordion",
+    component: Accordion,
   },
 };

@@ -1,5 +1,7 @@
 import GradientGenerator from "./GradientGenerator";
+import JobBoard from "./JobBoard";
 import { PortalSandbox } from "./Portal";
+import RedSquare from "./RedSquare";
 import ShoppingCart from "./ShoppingCart";
 import { ShoppingList } from "./ShoppingList";
 import Todo from "./Todo/Todo";
@@ -9,7 +11,9 @@ export type ComponentKey =
   | "shopping-cart"
   | "shopping-list"
   | "todo-list"
-  | "portal";
+  | "portal"
+  | "red-square"
+  | "job-board";
 
 export type ComponentRecord = Record<
   ComponentKey,
@@ -36,5 +40,13 @@ export const components: ComponentRecord = {
   portal: {
     name: "Portal",
     component: PortalSandbox,
+  },
+  "red-square": {
+    name: "Red Square",
+    component: RedSquare,
+  },
+  "job-board": {
+    name: "Job Board",
+    component: JobBoard,
   },
 };

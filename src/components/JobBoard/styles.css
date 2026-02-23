@@ -1,0 +1,39 @@
+body {
+  font-family: sans-serif;
+  background-color: beige;
+}
+
+.title {
+  color: orangered;
+}
+
+.container {
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin-bottom: 12px;
+  background-color: white;
+}
+
+.load-more-button {
+  margin-top: 8px;
+  border: 1px solid orangered;
+  border-radius: 4px;
+  padding: 4px 8px;
+  color: white;
+  background-color: orangered;
+}
+
+.disabled-button {
+  border-color: grey;
+  cursor: not-allowed;
+  color: white;
+  background-color: grey;
+}
+
+.skeleton {
+  margin-bottom: 12px;
+  border-radius: 4px;
+  background-color: lightgrey;
+  height: 100px;
+}

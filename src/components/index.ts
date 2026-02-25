@@ -6,6 +6,7 @@ import RedSquare from "./RedSquare";
 import ShoppingCart from "./ShoppingCart";
 import { ShoppingList } from "./ShoppingList";
 import Todo from "./Todo/Todo";
+import UndoableCounter from "./UndoableCounter";
 
 export type ComponentKey =
   | "gradient-generator"
@@ -15,7 +16,8 @@ export type ComponentKey =
   | "portal"
   | "red-square"
   | "job-board"
-  | "accordion";
+  | "accordion"
+  | "undoable-counter";
 
 export type ComponentRecord = Record<
   ComponentKey,
@@ -54,5 +56,9 @@ export const components: ComponentRecord = {
   accordion: {
     name: "Accordion",
     component: Accordion,
+  },
+  "undoable-counter": {
+    name: "Undoable Counter",
+    component: UndoableCounter,
   },
 };

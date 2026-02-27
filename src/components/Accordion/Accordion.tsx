@@ -1,41 +1,59 @@
-import * as React from "react";
+import { FC, useState } from "react";
+import "./styles.css";
 
-import './styles.css'
+type Section = {
+  value: string;
+  title: string;
+  contents: string;
+};
 
-function Accordion() {
+type AccordionProps = {
+  sections: Section[];
+};
+
+export const Accordion: FC<AccordionProps> = ({ sections }) => {
+  const [openSections, setOpenSections] = useState(new Set());
+
+  const handleOpenSections = (value: string) => {
+    const newOpenSections = new Set(openSections);
+
+    newOpenSections.has(value)
+      ? newOpenSections.delete(value)
+      : newOpenSections.add(value);
+
+    setOpenSections(newOpenSections);
+  };
+
+  console.log(openSections);
+
   return (
-    <div>
-      <div>
-        <div>
-          HTML <span aria-hidden={true} className="accordion-icon" />
-        </div>
-        <div>
-          The HyperText Markup Language or HTML is the standard markup language
-          for documents designed to be displayed in a web browser.
-        </div>
-      </div>
-      <div>
-        <div>
-          CSS <span aria-hidden={true} className="accordion-icon" />
-        </div>
-        <div>
-          Cascading Style Sheets is a style sheet language used for describing
-          the presentation of a document written in a markup language such as
-          HTML or XML.
-        </div>
-      </div>
-      <div>
-        <div>
-          JavaScript <span aria-hidden={true} className="accordion-icon" />
-        </div>
-        <div>
-          JavaScript, often abbreviated as JS, is a programming language that is
-          one of the core technologies of the World Wide Web, alongside HTML and
-          CSS.
-        </div>
-      </div>
+    <div className="accordion">
+      {sections.map(({ value, title, contents }) => {
+        const isExpanded = openSections.has(value);
+        return (
+          <div className="accordion-item" key={value}>
+            <button
+              className="accordion-item-title"
+              type="button"
+              onClick={() => handleOpenSections(value)}
+            >
+              {title}
+              <span
+                aria-hidden={true}
+                className={[
+                  "accordion-icon",
+                  isExpanded && "accordion-icon--rotated",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              />
+            </button>
+            <div className="accordion-item-contents" hidden={!isExpanded}>
+              {contents}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
-}
-
-export default Accordion;
+};

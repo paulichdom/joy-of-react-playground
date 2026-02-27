@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-import './styles.css'
+import "./styles.css";
 
+type Operation = "increment" | "multiply" | "decrement" | "divide";
 type Count = { operation: string | null; oldValue: number; newValue: number }[];
 
 export default function App() {
@@ -10,7 +11,7 @@ export default function App() {
   ];
   const [count, setCount] = useState(defaultCountValue);
 
-  const handleUpdateCount = (operation: string) => {
+  const handleUpdateCount = (operation: Operation) => {
     const { newValue: currentValue } = count[count.length - 1];
 
     switch (operation) {

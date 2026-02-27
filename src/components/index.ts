@@ -1,4 +1,4 @@
-import Accordion from "./Accordion";
+import AccordionContainer from "./Accordion/AccordionContainer";
 import GradientGenerator from "./GradientGenerator";
 import JobBoard from "./JobBoard";
 import { PortalSandbox } from "./Portal";
@@ -55,7 +55,7 @@ export const components: ComponentRecord = {
   },
   accordion: {
     name: "Accordion",
-    component: Accordion,
+    component: AccordionContainer,
   },
   "undoable-counter": {
     name: "Undoable Counter",

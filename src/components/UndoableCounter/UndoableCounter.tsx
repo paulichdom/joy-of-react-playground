@@ -6,13 +6,18 @@ type Operation = "increment" | "multiply" | "decrement" | "divide";
 type Count = { operation: string | null; oldValue: number; newValue: number }[];
 
 export default function App() {
-  const defaultCountValue: Count = [
-    { operation: null, oldValue: 0, newValue: 0 },
-  ];
-  const [count, setCount] = useState(defaultCountValue);
+  const [count, setCount] = useState<Count>([]);
+  const [history, setHistory] = useState<Count>([]);
+
+  const hasCountItems = count.length > 0;
+  const hasHistoryItems = history.length > 0;
 
   const handleUpdateCount = (operation: Operation) => {
-    const { newValue: currentValue } = count[count.length - 1];
+    let currentValue = 0;
+
+    if (hasCountItems) {
+      currentValue = count[count.length - 1].newValue;
+    }
 
     switch (operation) {
       case "increment":
@@ -62,12 +67,49 @@ export default function App() {
     }
   };
 
+  const handleUndo = () => {
+    if (!hasCountItems) return;
+
+    setHistory((prevValue) => [...prevValue, count[count.length - 1]]);
+
+    const nextCount = count.slice(0, -1)
+    setCount(nextCount);
+  };
+
+  const handleRedo = () => {
+    if (!hasHistoryItems) return;
+
+    
+    setCount((prevValue) => [...prevValue, history[history.length - 1]]);
+    
+    const nextHistory = history.slice(0, -1)
+    setHistory(nextHistory);
+  };
+
+  console.log({ count, history, hasHistoryItems });
+
   return (
     <div className="wrapper">
       <div className="controls">
-        <button className="button">Undo</button>
-        <button className="button">Redo</button>
-        <button className="button" onClick={() => setCount(defaultCountValue)}>
+        <button
+          className="button"
+          onClick={handleUndo}
+          disabled={!hasCountItems}
+        >
+          Undo
+        </button>
+        <button
+          className="button"
+          onClick={handleRedo}
+          disabled={!hasHistoryItems}
+        >
+          Redo
+        </button>
+        <button
+          className="button"
+          onClick={() => setCount([])}
+          disabled={!hasCountItems}
+        >
           Reset
         </button>
       </div>
@@ -81,7 +123,9 @@ export default function App() {
         >
           -1
         </button>
-        <span className="count">{count[count.length - 1].newValue}</span>
+        <span className="count">
+          {hasCountItems ? count[count.length - 1]?.newValue : "0"}
+        </span>
         <button
           className="button"
           onClick={() => handleUpdateCount("increment")}
@@ -104,13 +148,14 @@ export default function App() {
           </tr>
         </thead>
         <tbody>
-          {count.map((item) => (
-            <tr key={Math.random()}>
-              <th>{item.operation}</th>
-              <th>{item.oldValue}</th>
-              <th>{item.newValue}</th>
-            </tr>
-          ))}
+          {hasCountItems &&
+            count.map((item) => (
+              <tr key={Math.random()}>
+                <th>{item.operation}</th>
+                <th>{item.oldValue}</th>
+                <th>{item.newValue}</th>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>

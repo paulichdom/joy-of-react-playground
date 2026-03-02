@@ -1,14 +1,14 @@
 import * as Tooltip from "@radix-ui/react-tooltip";
-import Layout from "./components/Layout";
 import { useState } from "react";
 import { ComponentKey, components } from "./components";
+import { HolyGrail } from "./components/HolyGrail/HolyGrail";
 
 function App() {
   const componentsKeys = Object.keys(components);
   const defaultComponent = componentsKeys[
     componentsKeys.length - 1
   ] as ComponentKey;
-  
+
   const [selectedComponent, setSelectedComponent] =
     useState<ComponentKey>(defaultComponent);
 
@@ -16,12 +16,12 @@ function App() {
 
   return (
     <Tooltip.Provider delayDuration={200}>
-      <Layout
+      <HolyGrail
         selectedComponent={selectedComponent}
         setSelectedComponent={setSelectedComponent}
       >
         <SelectedComponent />
-      </Layout>
+      </HolyGrail>
     </Tooltip.Provider>
   );
 }

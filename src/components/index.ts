@@ -1,6 +1,5 @@
 import AccordionContainer from "./Accordion/AccordionContainer";
 import GradientGenerator from "./GradientGenerator";
-import { HolyGrail } from "./HolyGrail/HolyGrail";
 import JobBoard from "./JobBoard";
 import { PortalSandbox } from "./Portal";
 import RedSquare from "./RedSquare";
@@ -18,8 +17,7 @@ export type ComponentKey =
   | "red-square"
   | "job-board"
   | "accordion"
-  | "undoable-counter"
-  | "holy-grail";
+  | "undoable-counter";
 
 export type ComponentRecord = Record<
   ComponentKey,
@@ -62,9 +60,5 @@ export const components: ComponentRecord = {
   "undoable-counter": {
     name: "Undoable Counter",
     component: UndoableCounter,
-  },
-  "holy-grail": {
-    name: "Holy Grail",
-    component: HolyGrail,
-  },
+  }
 };

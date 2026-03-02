@@ -26,8 +26,15 @@ footer {
 }
 
 header {
-  background-color: tomato;
+  border-bottom: 1px solid black;
   height: 60px;
+}
+
+.header-container {
+  justify-self: center;
+  display: flex;
+  gap: 64px;
+
 }
 
 .columns {
@@ -36,23 +43,22 @@ header {
 }
 
 nav {
-  background-color: coral;
+  border-right: 1px solid black;
   flex-shrink: 0;
   width: 100px;
 }
 
 main {
-  background-color: moccasin;
   flex-grow: 1;
 }
 
 aside {
-  background-color: sandybrown;
+  border-left: 1px solid black;
   flex-shrink: 0;
   width: 100px;
 }
 
 footer {
-  background-color: slategray;
+  border-top: 1px solid black;
   height: 100px;
 }

@@ -5,6 +5,7 @@ import { PortalSandbox } from "./Portal";
 import RedSquare from "./RedSquare";
 import ShoppingCart from "./ShoppingCart";
 import { ShoppingList } from "./ShoppingList";
+import { Tabs } from "./Tabs/Tabs";
 import Todo from "./Todo/Todo";
 import UndoableCounter from "./UndoableCounter";
 
@@ -17,7 +18,8 @@ export type ComponentKey =
   | "red-square"
   | "job-board"
   | "accordion"
-  | "undoable-counter";
+  | "undoable-counter"
+  | "tabs";
 
 export type ComponentRecord = Record<
   ComponentKey,
@@ -60,5 +62,9 @@ export const components: ComponentRecord = {
   "undoable-counter": {
     name: "Undoable Counter",
     component: UndoableCounter,
-  }
+  },
+  tabs: {
+    name: "Tabs",
+    component: Tabs,
+  },
 };

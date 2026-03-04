@@ -18,16 +18,22 @@ export const TabsOne: FC<TabsOneProps> = ({ defaultValue, items }) => {
   const [value, setValue] = useState(defaultValue ?? items[0].value);
 
   return (
-    <div>
-      <div>
+    <div className="tabs">
+      <div className="tabs-list">
         {items.map(({ label, value: itemValue }) => {
-          //const isActiveValue = itemValue === value;
+          const isActiveValue = itemValue === value;
 
           return (
             <button
               key={itemValue}
               type="button"
               onClick={() => setValue(itemValue)}
+              className={[
+                "tabs-list-item",
+                isActiveValue && "tabs-list-item--active",
+              ]
+                .filter(Boolean)
+                .join(" ")}
             >
               {label}
             </button>
